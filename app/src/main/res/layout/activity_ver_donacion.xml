@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.VerDonacion"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <!-- Título principal -->
+
+        <!-- Subtítulo Donación -->
+        <EditText
+            android:id="@+id/tituloPrincipal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/barra_redondasuperior"
+            android:paddingVertical="16dp"
+            android:text="@string/tit_verdonacion"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tituloDonacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Titulo De la Donacion"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tituloPrincipal"
+            android:textStyle="bold"/>
+
+        <!-- Imagen destacada de la donación -->
+        <ImageView
+            android:id="@+id/imagenDonacion"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/descripciondonacion"
+            android:src="@drawable/recibirdonaciones"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tituloDonacion"/>
+
+
+        <!-- Contenedor de detalles -->
+        <LinearLayout
+            android:id="@+id/contenedorDetalles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imagenDonacion">
+
+            <!-- Nombre del donante -->
+            <TextView
+                android:id="@+id/labelDonante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_donador"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/nombreDonante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Juan Pérez"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:layout_marginTop="-10dp"/>
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/labelDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contacto_donador"
+                android:layout_marginTop="13dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/contactoDonante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3167924110"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Divisor -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:layout_marginTop="-13dp"/>
+
+            <!-- Ubicación -->
+            <TextView
+                android:id="@+id/labelUbicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcion"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+
+
+            <TextView
+                android:id="@+id/descripcionDonacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Varias libras de arroz con algo de atún"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Divisor -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <!-- Contacto -->
+            <TextView
+                android:id="@+id/labelContacto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/metodoentrega"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/metodoentrega"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Método de entrega elegido"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/black"
+                android:layout_marginVertical="8dp"/>
+        </LinearLayout>
+
+        <!-- Contenedor de botones -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:elevation="8dp"
+            android:background="@drawable/barra_redonda"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/botonChat"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/chat"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#4CAF50"
+                android:drawableStart="@android:drawable/ic_dialog_email"
+                android:drawablePadding="8dp"/>
+
+            <Button
+                android:id="@+id/botonLlamar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="@string/Llamar"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2196F3"
+                android:drawableStart="@android:drawable/ic_menu_call"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
