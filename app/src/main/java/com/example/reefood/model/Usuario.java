@@ -3,13 +3,9 @@ package com.example.reefood.model;
 public class Usuario {
 
     private long id;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String contrasena;
-    private String telefono;
-    private String fechaNacimiento;
-    private String genero;
+    private String nombre, apellido, correo, contraseña, telefono, fechaNacimiento, genero;
+
+
 
 
     //Constructor vacio
@@ -17,18 +13,18 @@ public class Usuario {
 
     }
     //constructor con valores
-    public Usuario(long id, String nombre, String apellido, String correo, String contrasena, String telefono, String fechaNacimiento, String genero) {
+    public Usuario(long id, String nombre, String apellido, String correo, String contraseña, String telefono, String fechaNacimiento, String genero) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasena = contrasena;
+        this.contraseña = contraseña;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
     }
 
-    //metodos getters
+
     public long getId() {
         return id;
     }
@@ -46,7 +42,7 @@ public class Usuario {
     }
 
     public String getContrasena() {
-        return contrasena;
+        return contraseña;
     }
 
     public String getTelefono() {
@@ -60,8 +56,6 @@ public class Usuario {
     public String getGenero() {
         return genero;
     }
-
-    //metodos setters
 
 
     public void setId(long id) {
@@ -81,7 +75,7 @@ public class Usuario {
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+        this.contraseña = contrasena;
     }
 
     public void setTelefono(String telefono) {

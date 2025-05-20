@@ -2,20 +2,16 @@ package com.example.reefood.model;
 
 import com.google.firebase.firestore.DocumentId;
 
-// Clase modelo que representa una donación de alimentos en la aplicación
+
 public class Donacion {
 
     @DocumentId
-    private String id;                 // ID del documento en Firestore
-    private String nombreDonante;      // Nombre de la persona o establecimiento que dona
-    private String contacto;           // Número de teléfono o forma de contacto
-    private String descripcion;        // Descripción de los productos donados
-    private String nota;               // Notas adicionales sobre la donación
-    private String metodoEntrega;      // Método de entrega: "Recoger" o "Envío"
-    private String imagenUrl;          // URL de la imagen (opcional)
-    private long timestamp;            // Timestamp para ordenar donaciones
+    private String id,nombreDonante, contacto,descripcion,metodoEntrega,imagenUrl,nota;
 
-    // Constructor vacío requerido para Firestore
+
+    private long timestamp;
+
+
     public Donacion() {
 
     }
@@ -30,7 +26,6 @@ public class Donacion {
         this.timestamp = System.currentTimeMillis();
     }
 
-    // Métodos getter y setter para acceder a los atributos privados
     public String getId() {
         return id;
     }

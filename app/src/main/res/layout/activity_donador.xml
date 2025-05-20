@@ -72,7 +72,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/establishmentName"
+                android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -90,7 +90,7 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/contactNumber"
+                android:id="@+id/edtContacto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -109,7 +109,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/tituloproducto"
+                android:id="@+id/edtNombreProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -127,18 +127,18 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/note"
+                android:id="@+id/edtnota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/editar_borde"
-                android:minHeight="100dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp"
-                android:paddingHorizontal="10dp"
+                android:background="@drawable/editar_borde"
                 android:gravity="top|start"
                 android:hint="@string/hint_descrip"
-                android:textColorHint="@color/avisos"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:minHeight="100dp"
+                android:paddingHorizontal="10dp"
+                android:textColorHint="@color/avisos" />
 
 
             <TextView

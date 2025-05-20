@@ -10,7 +10,7 @@ public class ManagerDB {
     private SQLiteDatabase db;
 
 
-    //Constructor para inicializar la base datos
+
     public ManagerDB(Context context){
         this.conection = new ConexionBD(context);
         this.db = conection.getWritableDatabase();
@@ -39,11 +39,11 @@ public class ManagerDB {
     }
 
 
-    //verificar si el usurio esta registrado para logearlo
+
     public boolean verificarlogin(String Correo, String contrasena){
         openBDRead();
 
-        //consulta para saber si el usuario ya existe
+
         String query = " SELECT * FROM Usuarios WHERE Correo=? AND Contraseña=?";
         Cursor cursor = db.rawQuery(query, new  String[]{Correo, contrasena});
 
@@ -52,11 +52,11 @@ public class ManagerDB {
         return  existe;
     }
 
-    //verificar si el correo ya esta en uso para validar en el registro
+
     public boolean correoexiste(String Correo){
         openBDRead();
 
-        //consulta para saber si el usuario ya existe
+
         String query = " SELECT * FROM Usuarios WHERE Correo=?";
         Cursor cursor = db.rawQuery(query, new  String[]{Correo});
 
