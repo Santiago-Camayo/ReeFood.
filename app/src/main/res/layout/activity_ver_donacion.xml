@@ -14,9 +14,6 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
-        <!-- Título principal -->
-
-        <!-- Subtítulo Donación -->
         <EditText
             android:id="@+id/tituloPrincipal"
             android:layout_width="0dp"
@@ -47,7 +44,6 @@
             app:layout_constraintTop_toBottomOf="@id/tituloPrincipal"
             android:textStyle="bold"/>
 
-        <!-- Imagen destacada de la donación -->
         <ImageView
             android:id="@+id/imagenDonacion"
             android:layout_width="0dp"
@@ -62,7 +58,6 @@
             app:layout_constraintTop_toBottomOf="@id/tituloDonacion"/>
 
 
-        <!-- Contenedor de detalles -->
         <LinearLayout
             android:id="@+id/contenedorDetalles"
             android:layout_width="0dp"
@@ -73,7 +68,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imagenDonacion">
 
-            <!-- Nombre del donante -->
             <TextView
                 android:id="@+id/labelDonante"
                 android:layout_width="match_parent"
@@ -100,7 +94,6 @@
                 android:background="@color/black"
                 android:layout_marginTop="-10dp"/>
 
-            <!-- Descripción -->
             <TextView
                 android:id="@+id/labelDescripcion"
                 android:layout_width="match_parent"
@@ -122,14 +115,14 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp"/>
 
-            <!-- Divisor -->
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/black"
                 android:layout_marginTop="-13dp"/>
 
-            <!-- Ubicación -->
+
             <TextView
                 android:id="@+id/labelUbicacion"
                 android:layout_width="match_parent"
@@ -150,14 +143,14 @@
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"/>
 
-            <!-- Divisor -->
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/black"
                 android:layout_marginTop="10dp"/>
 
-            <!-- Contacto -->
+
             <TextView
                 android:id="@+id/labelContacto"
                 android:layout_width="match_parent"
@@ -184,7 +177,7 @@
                 android:layout_marginVertical="8dp"/>
         </LinearLayout>
 
-        <!-- Contenedor de botones -->
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

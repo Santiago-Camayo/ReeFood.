@@ -8,7 +8,7 @@
     tools:context=".views.Donador"
     android:background="@drawable/screen">
 
-    <!-- Barra de navegación fija en la parte superior -->
+
     <LinearLayout
         android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:textSize="25sp" />
     </LinearLayout>
 
-    <!-- ScrollView para permitir desplazamiento en pantallas pequeñas -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -149,8 +149,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
-            <!-- ESTE IMAGEVIEW ES PARA CUANDO EL USUARIO AGREGE LAS IMAGENES DE LA DONACIÓN
-             APAREZCAN ARRIBA DEL BOTÓN LAS IMAGENES QUE SUBIÓ-->
 
             <ImageView
                 android:id="@+id/view_agr_imagen"

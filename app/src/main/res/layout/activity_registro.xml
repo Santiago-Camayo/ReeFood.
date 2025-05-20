@@ -10,7 +10,6 @@
     android:orientation="vertical"
     tools:context=".views.Registro">
 
-    <!-- Barra de navegación superior -->
     <LinearLayout
         android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
@@ -45,7 +44,7 @@
 
     </LinearLayout>
 
-    <!-- Contenido principal -->
+
     <LinearLayout
         android:id="@+id/contenidoprincipal"
         android:layout_width="0dp"
@@ -68,7 +67,6 @@
                 android:orientation="vertical"
                 android:paddingBottom="24dp">
 
-                <!-- Sección de foto de perfil -->
                 <FrameLayout
                     android:layout_width="120dp"
                     android:layout_height="120dp"
@@ -111,7 +109,7 @@
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
-                <!-- Campos de formulario -->
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,7 +124,7 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <!-- Nombres y Apellidos en una fila -->
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -166,7 +164,7 @@
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
-                        <!-- Correo -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilCorreo"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -183,7 +181,7 @@
                                 android:inputType="textEmailAddress" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Contraseña -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilContrasena"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -200,7 +198,7 @@
                                 android:inputType="textPassword" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Teléfono -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilTelefono"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -217,7 +215,7 @@
                                 android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Fecha de Nacimiento -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilFecha"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -236,7 +234,7 @@
                                 android:inputType="none" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Género (Dropdown) -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilGenero"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -254,7 +252,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Botón de registro (Opcional - alternativa al botón de Guardar en la toolbar) -->
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRegistrar"
                     android:layout_width="match_parent"

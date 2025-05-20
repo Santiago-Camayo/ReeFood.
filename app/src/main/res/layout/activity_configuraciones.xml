@@ -31,7 +31,7 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <!-- Botón para editar perfil -->
+
     <LinearLayout
         android:id="@+id/editprofile"
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/barradenavegacion">
 
-        <!-- Ícono de usuario -->
+
         <ImageView
             android:contentDescription="@string/configuraciones"
             android:layout_width="54dp"
@@ -50,7 +50,7 @@
             android:src="@drawable/avatarusuario"
             android:layout_marginEnd="10dp"/>
 
-        <!-- Texto de opción -->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,14 +68,14 @@
             android:src="@drawable/flecha_icono"/>
     </LinearLayout>
 
-    <!-- Separador -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#E0E0E0"
         app:layout_constraintTop_toBottomOf="@id/editprofile"/>
 
-    <!-- Notificaciones -->
+
     <LinearLayout
         android:id="@+id/bntnotis"
         android:layout_width="match_parent"
@@ -108,19 +108,17 @@
             android:minHeight="48dp"
             android:layout_gravity="center_vertical"
             />
-        <!-- android:thumb="@drawable/switch_thumb"/>-->
-
 
     </LinearLayout>
 
-    <!-- Separador -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/bntnotis"/>
 
-    <!-- Seguridad -->
+
     <LinearLayout
         android:id="@+id/btnseguridad"
         android:layout_width="match_parent"
@@ -153,14 +151,14 @@
             android:src="@drawable/flecha_icono"/>
     </LinearLayout>
 
-    <!-- Separador -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#E0E0E0"
         app:layout_constraintTop_toBottomOf="@id/btnseguridad"/>
 
-    <!-- Idioma -->
+
     <LinearLayout
         android:id="@+id/btnidioma"
         android:layout_width="match_parent"
@@ -270,7 +268,7 @@
 
 
 
-    <!-- Barra de navegación inferior -->
+
     <LinearLayout
         android:id="@+id/barranavegacioninferior"
         android:layout_width="match_parent"

@@ -53,7 +53,6 @@
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/white">
 
-            <!-- Usar un LinearLayout vertical dentro del CardView para organizar los elementos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
