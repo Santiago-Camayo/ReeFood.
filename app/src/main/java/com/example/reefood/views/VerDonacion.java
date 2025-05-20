@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.reefood.R;
 import com.example.reefood.model.Donacion;
 import com.google.firebase.firestore.FirebaseFirestore;
 
