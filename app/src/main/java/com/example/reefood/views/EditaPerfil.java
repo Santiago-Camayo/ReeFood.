@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.reefood.R;
+
 // Clase para editar la información del perfil de usuario
 public class EditaPerfil extends Configuraciones {
 
@@ -25,7 +27,7 @@ public class EditaPerfil extends Configuraciones {
         setContentView(R.layout.activity_editarperfil);
 
         // Inicialización de los campos de formulario
-        editTextAddress = findViewById(R.id.editTextName);
+        editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextContactNumber = findViewById(R.id.editTextContactNumber);
         editTextAddress = findViewById(R.id.editTextAddress);

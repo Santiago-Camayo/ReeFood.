@@ -3,95 +3,110 @@ package com.example.reefood.views;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
-import com.example.reefood.model.Donacion;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.reefood.model.Donaciones;
 
 public class VerDonacion extends AppCompatActivity {
 
-    // Firebase
-    private FirebaseFirestore db;
-    private String donacionId;
+    private Donaciones donacion;
+    private TextView tituloDonacion;
+    private TextView nombreDonante;
+    private TextView contactoDonante;
+    private TextView descripcionDonacion;
+    private TextView metodoEntrega;
+    private Button botonChat;
+    private Button botonLlamar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_donacion);
 
-        // Inicializar Firestore
-        db = FirebaseFirestore.getInstance();
+        // Obtener la donación del intent
+        donacion = (Donaciones) getIntent().getSerializableExtra("donacion");
 
-        // Obtener los datos enviados desde la actividad anterior
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            // Extraer los datos de la donación
-            String nombre = extras.getString("nombre", "");
-            String contacto = extras.getString("contacto", "");
-            String titulo = extras.getString("descripcion", "");
-            String descripcion = extras.getString("nota", "");
-            String metodo = extras.getString("metodo", "");
-            donacionId = extras.getString("id", "");
+        // Verificación alternativa en caso de que se envíen los campos por separado
+        if (donacion == null) {
+            // Verificar si hay datos individuales
+            String nombre = getIntent().getStringExtra("nombre");
+            String telefono = getIntent().getStringExtra("telefono");
+            String titulo = getIntent().getStringExtra("titulo");
+            String descripcion = getIntent().getStringExtra("descripcion");
+            String entrega = getIntent().getStringExtra("entrega");
 
-            // Mostrar los datos en las vistas correspondientes
-            ((TextView) findViewById(R.id.nombreDonante)).setText(nombre);
-            ((TextView) findViewById(R.id.tituloDonacion)).setText(titulo);
-            ((TextView) findViewById(R.id.descripcionDonacion)).setText(descripcion);
-            ((TextView) findViewById(R.id.metodoentrega)).setText(metodo);
-            ((TextView) findViewById(R.id.contactoDonante)).setText(contacto);
-
-            // Si tenemos ID, cargar datos actualizados desde Firestore
-            if (!donacionId.isEmpty()) {
-                cargarDatosDesdeForestore(donacionId);
+            if (nombre != null && titulo != null) {
+                // Crear objeto Donaciones con los datos individuales
+                donacion = new Donaciones(nombre, titulo, descripcion, telefono, entrega);
+            } else {
+                Toast.makeText(this, "Error al cargar la donación", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
             }
-
-            // Configurar el botón de chat para abrir WhatsApp
-            findViewById(R.id.botonChat).setOnClickListener(v -> {
-                try {
-                    // Abrir WhatsApp con el número de contacto
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://wa.me/" + contacto));
-                    startActivity(intent);
-                } catch (Exception e) {
-                    // Mostrar mensaje de error si falla
-                    Toast.makeText(this, "No se pudo abrir WhatsApp", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            // Configurar el botón de llamar para abrir el marcador telefónico
-            findViewById(R.id.botonLlamar).setOnClickListener(v -> {
-                // Abrir el marcador con el número de contacto
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + contacto));
-                startActivity(intent);
-            });
         }
+
+        // Inicializar vistas
+        tituloDonacion = findViewById(R.id.tituloDonacion);
+        nombreDonante = findViewById(R.id.nombreDonante);
+        contactoDonante = findViewById(R.id.contactoDonante);
+        descripcionDonacion = findViewById(R.id.descripcionDonacion);
+        metodoEntrega = findViewById(R.id.metodoentrega);
+        botonChat = findViewById(R.id.botonChat);
+        botonLlamar = findViewById(R.id.botonLlamar);
+
+        // Mostrar datos de la donación
+        mostrarDatosDonacion();
+
+        // Configurar listeners de los botones
+        configurarBotones();
     }
 
-    // Método para obtener datos actualizados de la donación desde Firestore
-    // Útil en caso de que otros usuarios hayan modificado la donación
-    private void cargarDatosDesdeForestore(String id) {
-        db.collection("donaciones").document(id)
-                .get()
-                .addOnSuccessListener(document -> {
-                    if (document.exists()) {
-                        Donacion donacion = document.toObject(Donacion.class);
-                        if (donacion != null) {
-                            // Actualizar la UI con los datos más recientes
-                            ((TextView) findViewById(R.id.nombreDonante)).setText(donacion.getNombreDonante());
-                            ((TextView) findViewById(R.id.tituloDonacion)).setText(donacion.getDescripcion());
-                            ((TextView) findViewById(R.id.descripcionDonacion)).setText(donacion.getNota());
-                            ((TextView) findViewById(R.id.metodoentrega)).setText(donacion.getMetodoEntrega());
-                            ((TextView) findViewById(R.id.contactoDonante)).setText(donacion.getContacto());
-                        }
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    // No mostrar error, se usan los datos que ya tenemos
-                });
+    private void mostrarDatosDonacion() {
+        tituloDonacion.setText(donacion.getTitulo());
+        nombreDonante.setText(donacion.getNombre());
+        contactoDonante.setText(donacion.getTelefono());
+        descripcionDonacion.setText(donacion.getDescripcion());
+        metodoEntrega.setText(donacion.getEntrega());
+    }
+
+    private void configurarBotones() {
+        // Botón para llamar al donante
+        botonLlamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (donacion.getTelefono() != null && !donacion.getTelefono().isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + donacion.getTelefono()));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(VerDonacion.this,
+                            "Número de contacto no disponible",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Botón para iniciar chat (implementación básica)
+        botonChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(VerDonacion.this,
+                        "Funcionalidad de chat en desarrollo",
+                        Toast.LENGTH_SHORT).show();
+                // Aquí puedes implementar la lógica para abrir un chat
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

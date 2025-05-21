@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.reefood.R;
+
 
 public class Menu extends AppCompatActivity {
 

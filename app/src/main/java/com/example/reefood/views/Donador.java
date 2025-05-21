@@ -11,112 +11,105 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
-import com.example.reefood.model.Donacion;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.reefood.model.Donaciones;
+import com.example.reefood.model.ManagerDB;
 
 public class Donador extends AppCompatActivity {
 
-    private EditText edtnombre,edtcontacto,edttituloproducto,edtnota;
+    private EditText edtNombre, edtContacto, edtTituloProducto, edtNota;
     private RadioGroup deliveryMethodGroup;
     private Button btnSiguiente;
-    private ImageButton btnatras;
+    private ImageButton btnAtras;
     private String metodoEntrega = "";
-
-    private FirebaseFirestore db;
+    private ManagerDB managerDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donador);
 
+        managerDB = new ManagerDB(this);
 
-        db = FirebaseFirestore.getInstance();
+        inicializarVistas();
+        configurarListeners();
+    }
 
-
-        btnatras = findViewById(R.id.btnatras);
-        btnatras.setOnClickListener(v -> {
-            Intent intent = new Intent(Donador.this, Menu.class);
-            startActivity(intent);
-        });
-        edtnombre = findViewById(R.id.edtNombre);
-        edtcontacto = findViewById(R.id.edtContacto);
-        edttituloproducto = findViewById(R.id.edtNombreProducto);
-        edtnota = findViewById(R.id.edtnota);
+    private void inicializarVistas() {
+        btnAtras = findViewById(R.id.btnatras);
+        edtNombre = findViewById(R.id.edtNombre);
+        edtContacto = findViewById(R.id.edtContacto);
+        edtTituloProducto = findViewById(R.id.edtNombreProducto);
+        edtNota = findViewById(R.id.edtnota);
         deliveryMethodGroup = findViewById(R.id.deliveryMethodGroup);
         btnSiguiente = findViewById(R.id.btnsiguiente);
+    }
 
+    private void configurarListeners() {
+        btnAtras.setOnClickListener(v -> {
+            startActivity(new Intent(Donador.this, Menu.class));
+            finish();
+        });
 
         deliveryMethodGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.recojerenubi) {
-
                 metodoEntrega = "Recoger en ubicación";
             } else if (checkedId == R.id.hacerenvio) {
-
                 metodoEntrega = "Envío a domicilio";
             }
         });
 
-
         btnSiguiente.setOnClickListener(v -> {
-
-            if (validateFields()) {
-                guardarDonacionEnFirestore();
+            if (validarCampos()) {
+                guardarDonacionEnDB();
             }
         });
     }
-    private void guardarDonacionEnFirestore() {
-        Toast.makeText(this, "Guardando donación...", Toast.LENGTH_SHORT).show();
 
-        Donacion nuevaDonacion = new Donacion(
-                edtnombre.getText().toString(),
-                edtcontacto.getText().toString(),
-                edttituloproducto.getText().toString(),
-                edtnota.getText().toString(),
-                metodoEntrega
-        );
-
-
-        db.collection("donaciones")
-                .add(nuevaDonacion)
-                .addOnSuccessListener(documentReference -> {
-
-                    Toast.makeText(this, "Donación registrada con éxito", Toast.LENGTH_SHORT).show();
-
-
-                    startActivity(new Intent(Donador.this, Publicaciones.class));
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-
-                    Toast.makeText(this, "Error al registrar la donación: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                });
-    }
-
-
-    private boolean validateFields() {
-
-        if (edtnombre.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Ingrese el nombre del donante", Toast.LENGTH_SHORT).show();
+    private boolean validarCampos() {
+        if (edtNombre.getText().toString().trim().isEmpty()) {
+            mostrarToast("Ingrese el nombre del donante");
             return false;
         }
 
-
-        if (edtcontacto.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Ingrese un número de contacto", Toast.LENGTH_SHORT).show();
+        if (edtContacto.getText().toString().trim().isEmpty()) {
+            mostrarToast("Ingrese un número de contacto");
             return false;
         }
 
-        if (edttituloproducto.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Ingrese el título de la donación", Toast.LENGTH_SHORT).show();
+        if (edtTituloProducto.getText().toString().trim().isEmpty()) {
+            mostrarToast("Ingrese el título de la donación");
             return false;
         }
 
         if (metodoEntrega.isEmpty()) {
-            Toast.makeText(this, "Seleccione un método de entrega", Toast.LENGTH_SHORT).show();
+            mostrarToast("Seleccione un método de entrega");
             return false;
         }
 
         return true;
+    }
+
+    private void guardarDonacionEnDB() {
+        Donaciones nuevaDonacion = new Donaciones(
+                edtNombre.getText().toString(),
+                edtTituloProducto.getText().toString(),
+                edtNota.getText().toString(),
+                edtContacto.getText().toString(),
+                metodoEntrega
+        );
+
+        long resultado = managerDB.InsertarDonacion(nuevaDonacion);
+
+        if (resultado > 0) {
+            mostrarToast("Donación registrada con éxito");
+            startActivity(new Intent(Donador.this, Publicaciones.class));
+            finish();
+        } else {
+            mostrarToast("Error al registrar la donación");
+        }
+    }
+
+    private void mostrarToast(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 }

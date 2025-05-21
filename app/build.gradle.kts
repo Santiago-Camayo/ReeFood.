@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.android.material:material:1.13.0-alpha13")
     implementation ("com.airbnb.android:lottie:6.0.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.google.gms:google-services:4.3.15")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

@@ -15,7 +15,7 @@ public class ConexionBD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Constantes.SENTENCIA_TABLA_USUARIOS);
-
+        db.execSQL(Constantes.SENTENCIA_TABLA_DONACIONES);
     }
 
     @Override

@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ManagerDB {
     private  ConexionBD conection;
     private SQLiteDatabase db;
@@ -17,9 +20,11 @@ public class ManagerDB {
     }
 
     private void openBDWrite (){
+
         db = conection.getWritableDatabase();
     }
     private void openBDRead(){
+
         db = conection.getReadableDatabase();
     }
 
@@ -69,6 +74,39 @@ public class ManagerDB {
         if (db != null && db.isOpen()) {
             db.close();
         }
+    }
+
+    public long InsertarDonacion(Donaciones donacion) {
+        openBDWrite();
+        ContentValues values = new ContentValues();
+        values.put("nombre", donacion.getNombre());
+        values.put("telefono", donacion.getTelefono());
+        values.put("titulo", donacion.getTitulo());
+        values.put("descripcion", donacion.getDescripcion());
+        values.put("entrega", donacion.getEntrega());
+
+        long resultado = db.insert("Donaciones", null, values);
+        cerrarDB();
+        return resultado;
+    }
+    public ArrayList<Donaciones> obtenerdonaciones() {
+        openBDRead();  // Abre la BD en modo lectura
+        ArrayList<Donaciones> listaDonaciones = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM Donaciones", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Donaciones donacion = new Donaciones();
+                donacion.setNombre(cursor.getString(1));     // nombre
+                donacion.setTelefono(cursor.getString(2));   // teléfono
+                donacion.setTitulo(cursor.getString(3));     // título
+                donacion.setDescripcion(cursor.getString(4)); // descripción
+                donacion.setEntrega(cursor.getString(5));     // método de entrega
+                listaDonaciones.add(donacion);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listaDonaciones;
     }
 
 

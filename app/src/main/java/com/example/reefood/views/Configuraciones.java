@@ -1,5 +1,7 @@
 package com.example.reefood.views;
 
+import static android.widget.Toast.*;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +46,7 @@ public class Configuraciones extends AppCompatActivity {
         swDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(Configuraciones.this, "CONFIGIGURACION PROXIMAMENTE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Configuraciones.this, "CONFIGIGURACION PROXIMAMENTE", LENGTH_SHORT ).show();
             }
         });
 
@@ -54,10 +56,10 @@ public class Configuraciones extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
 
-                    Toast.makeText(Configuraciones.this, "Notificaciones encendidas", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(Configuraciones.this, "Notificaciones encendidas", LENGTH_SHORT).show();
                 } else {
 
-                    Toast.makeText(Configuraciones.this, "Notificaciones apagadas", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(Configuraciones.this, "Notificaciones apagadas", LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,7 +117,7 @@ public class Configuraciones extends AppCompatActivity {
 
                        //funcion para eliminar cuenta(no disponibe)
 
-                        Toast.makeText(Configuraciones.this, "Procediendo a eliminar cuenta...", Toast.LENGTH_SHORT).show();
+                        makeText(Configuraciones.this, "Procediendo a eliminar cuenta...", LENGTH_SHORT).show();
 
                         Log.i("Configuraciones", "!!! Llama a la función de eliminación del backend AQUÍ !!!");
 
