@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.reefood">
 
     <!-- Permisos deben ir aquí, antes de <application> -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,9 +42,7 @@
         <activity
             android:name=".views.Registro"
             android:exported="false" />
-        <activity
-            android:name=".views.IniciarSesion"
-            android:exported="false" />
+
         <activity
             android:name=".views.IniciarSesion"
             android:exported="true">

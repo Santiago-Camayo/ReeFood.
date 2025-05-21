@@ -12,8 +12,8 @@ public class Constantes {
                     "Correo TEXT NOT NULL," +
                     "Contraseña TEXT NOT NULL," +
                     "Telefono TEXT NOT NULL, " +
-                    "FechaNacimiento TEXT NOT NULL,)" +
-                    "Genero TEXT NOT NULL,";
+                    "FechaNacimiento TEXT NOT NULL," +
+                    "Genero TEXT NOT NULL)";
 
     public static String SENTENCIA_TABLA_DONACIONES =
             "CREATE TABLE IF NOT EXISTS Donaciones (" +
