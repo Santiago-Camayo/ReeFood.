@@ -1,8 +1,9 @@
 package com.example.reefood.model;
 
 import java.io.Serializable;
-
-public class Donaciones implements Serializable {
+// Clase modelo para representar un registro de donación,
+// implementa Serializable para permitir su paso entre componentes (e.g., Intents)
+public class Registro_Donaciones implements Serializable {
     // Add the serialVersionUID for better version control
     private static final long serialVersionUID = 1L;
 
@@ -12,12 +13,12 @@ public class Donaciones implements Serializable {
     private String telefono;
     private String entrega;
 
-
-    public Donaciones() {
+    // Constructor por defecto, necesario para deserialización y creación de instancias vacías
+    public Registro_Donaciones() {
     }
 
     // Constructor
-    public Donaciones(String nombre, String titulo, String descripcion, String telefono, String entrega) {
+    public Registro_Donaciones(String nombre, String titulo, String descripcion, String telefono, String entrega) {
         this.nombre = nombre;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -64,5 +65,16 @@ public class Donaciones implements Serializable {
 
     public void setEntrega(String entrega) {
         this.entrega = entrega;
+    }
+
+    // Método toString para representar el objeto como cadena, útil para depuración o logging
+    public String toString() {
+        return "Registro_Donaciones{" +
+                "nombre='" + nombre + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", entrega='" + entrega + '\'' +
+                '}';
     }
 }

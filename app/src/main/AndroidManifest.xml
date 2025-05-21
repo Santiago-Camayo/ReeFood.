@@ -19,32 +19,32 @@
         android:theme="@style/Theme.ReFood"
         tools:targetApi="31">
         <activity
-            android:name=".views.MisDonaciones"
+            android:name=".controller.MisDonaciones"
             android:exported="false" />
         <activity
-            android:name=".views.EditaPerfil"
+            android:name=".controller.EditaPerfil"
             android:exported="false" />
         <activity
-            android:name=".views.Configuraciones"
+            android:name=".controller.Configuraciones"
             android:exported="false" />
         <activity
-            android:name=".views.Donador"
+            android:name=".controller.Donador"
             android:exported="false" />
         <activity
-            android:name=".views.VerDonacion"
+            android:name=".controller.VerDonacion"
             android:exported="false" />
         <activity
-            android:name=".views.Publicaciones"
+            android:name=".controller.Publicaciones"
             android:exported="false" />
         <activity
-            android:name=".views.Menu"
+            android:name=".controller.Menu"
             android:exported="false" />
         <activity
-            android:name=".views.Registro"
+            android:name=".controller.Registro"
             android:exported="false" />
 
         <activity
-            android:name=".views.IniciarSesion"
+            android:name=".controller.IniciarSesion"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

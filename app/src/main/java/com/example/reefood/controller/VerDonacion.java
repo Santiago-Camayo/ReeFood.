@@ -1,4 +1,4 @@
-package com.example.reefood.views;
+package com.example.reefood.controller;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,11 +11,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
-import com.example.reefood.model.Donaciones;
+import com.example.reefood.model.Registro_Donaciones;
 
 public class VerDonacion extends AppCompatActivity {
 
-    private Donaciones donacion;
+    private Registro_Donaciones donacion;
     private TextView tituloDonacion;
     private TextView nombreDonante;
     private TextView contactoDonante;
@@ -30,7 +30,7 @@ public class VerDonacion extends AppCompatActivity {
         setContentView(R.layout.activity_ver_donacion);
 
         // Obtener la donación del intent
-        donacion = (Donaciones) getIntent().getSerializableExtra("donacion");
+        donacion = (Registro_Donaciones) getIntent().getSerializableExtra("donacion");
 
         // Verificación alternativa en caso de que se envíen los campos por separado
         if (donacion == null) {
@@ -43,7 +43,7 @@ public class VerDonacion extends AppCompatActivity {
 
             if (nombre != null && titulo != null) {
                 // Crear objeto Donaciones con los datos individuales
-                donacion = new Donaciones(nombre, titulo, descripcion, telefono, entrega);
+                donacion = new Registro_Donaciones(nombre, titulo, descripcion, telefono, entrega);
             } else {
                 Toast.makeText(this, "Error al cargar la donación", Toast.LENGTH_SHORT).show();
                 finish();

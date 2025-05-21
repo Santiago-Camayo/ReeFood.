@@ -9,28 +9,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerDB {
-    private  ConexionBD conection;
-    private SQLiteDatabase db;
+    // Variables de instancia: gestionan la conexión y la base de datos
+    private ConexionBD conection; // Clase personalizada para configurar/crear la base de datos
+    private SQLiteDatabase db;    // Instancia de SQLiteDatabase para operaciones en la base de datos
 
-
-
-    public ManagerDB(Context context){
-        this.conection = new ConexionBD(context);
-        this.db = conection.getWritableDatabase();
+    // Constructor: Inicializa la conexión a la base de datos
+    public ManagerDB(Context context) {
+        this.conection = new ConexionBD(context); // Crea instancia de ConexionBD con el contexto de Android
+        this.db = conection.getWritableDatabase(); // Obtiene una instancia de la base de datos en modo escritura
     }
 
-    private void openBDWrite (){
-
-        db = conection.getWritableDatabase();
-    }
-    private void openBDRead(){
-
-        db = conection.getReadableDatabase();
+    // Abre la base de datos en modo escritura
+    private void openBDWrite() {
+        db = conection.getWritableDatabase(); // Reasigna db a una instancia de base de datos en modo escritura
     }
 
-    public long insert (Usuario usuario){
-        openBDWrite();
-        ContentValues values = new ContentValues();
+    // Abre la base de datos en modo solo lectura
+    private void openBDRead() {
+        db = conection.getReadableDatabase(); // Reasigna db a una instancia de base de datos en modo lectura
+    }
+
+    // Obtiene el nombre del primer usuario de la tabla Usuarios
+    public String NombreUsuario() {
+        SQLiteDatabase db = conection.getReadableDatabase(); // Obtiene base de datos en modo lectura (variable local, no usa el campo de clase)
+        String nombre = ""; // Valor por defecto si no hay datos
+        Cursor cursor = db.rawQuery("SELECT * FROM Usuarios", null); // Consulta todas las columnas de la tabla Usuarios
+
+        if (cursor.moveToNext()) { // Avanza al primer registro (si existe)
+            nombre = cursor.getString(0); // Obtiene el valor de la primera columna (se asume que es el nombre)
+        }
+        cursor.close(); // Cierra el cursor para liberar recursos
+        return nombre; // Devuelve el nombre o cadena vacía si no hay datos
+    }
+
+    // Inserta un registro de usuario en la tabla Usuarios
+    public long insert(Registro_Usuario usuario) {
+        openBDWrite(); // Asegura que la base de datos esté en modo escritura
+        ContentValues values = new ContentValues(); // Contenedor para mapear valores a columnas
+        // Mapea los campos de Registro_Usuario a las columnas de la tabla Usuarios
         values.put("Nombres", usuario.getNombre());
         values.put("Apellidos", usuario.getApellido());
         values.put("Correo", usuario.getCorreo());
@@ -39,77 +55,74 @@ public class ManagerDB {
         values.put("FechaNacimiento", usuario.getFechaNacimiento());
         values.put("Genero", usuario.getGenero());
 
-        long resul = db.insert("Usuarios",null,values);
-        return resul;
+        long resul = db.insert("Usuarios", null, values); // Inserta datos en la tabla Usuarios; devuelve ID de fila o -1 si falla
+        return resul; // Devuelve el resultado de la inserción
     }
 
+    // Verifica si existe un usuario con el correo y contraseña proporcionados
+    public boolean verificarlogin(String Correo, String contrasena) {
+        openBDRead(); // Abre la base de datos en modo lectura
+        String query = "SELECT * FROM Usuarios WHERE Correo=? AND Contraseña=?"; // Consulta parametrizada para evitar inyección SQL
+        Cursor cursor = db.rawQuery(query, new String[]{Correo, contrasena}); // Ejecuta consulta con correo y contraseña
 
-
-    public boolean verificarlogin(String Correo, String contrasena){
-        openBDRead();
-
-
-        String query = " SELECT * FROM Usuarios WHERE Correo=? AND Contraseña=?";
-        Cursor cursor = db.rawQuery(query, new  String[]{Correo, contrasena});
-
-        boolean existe = cursor.getCount()>0;
-        cursor.close();
-        return  existe;
+        boolean existe = cursor.getCount() > 0; // Verdadero si hay al menos un registro coincidente
+        cursor.close(); // Cierra el cursor para liberar recursos
+        return existe; // Devuelve el resultado de la verificación
     }
 
+    // Verifica si un correo ya existe en la tabla Usuarios
+    public boolean correoexiste(String Correo) {
+        openBDRead(); // Abre la base de datos en modo lectura
+        String query = "SELECT * FROM Usuarios WHERE Correo=?"; // Consulta parametrizada para verificar el correo
+        Cursor cursor = db.rawQuery(query, new String[]{Correo}); // Ejecuta consulta con el correo
 
-    public boolean correoexiste(String Correo){
-        openBDRead();
-
-
-        String query = " SELECT * FROM Usuarios WHERE Correo=?";
-        Cursor cursor = db.rawQuery(query, new  String[]{Correo});
-
-        boolean existe = cursor.getCount()>0;
-        cursor.close();
-        return  existe;
+        boolean existe = cursor.getCount() > 0; // Verdadero si el correo existe
+        cursor.close(); // Cierra el cursor para liberar recursos
+        return existe; // Devuelve el resultado de la verificación
     }
-    // cerrar la base de datos
+
+    // Cierra la conexión a la base de datos si está abierta
     public void cerrarDB() {
-        if (db != null && db.isOpen()) {
-            db.close();
+        if (db != null && db.isOpen()) { // Verifica si db está inicializada y abierta
+            db.close(); // Cierra la base de datos para liberar recursos
         }
     }
 
-    public long InsertarDonacion(Donaciones donacion) {
-        openBDWrite();
-        ContentValues values = new ContentValues();
+    // Inserta un registro de donación en la tabla Donaciones
+    public long InsertarDonacion(Registro_Donaciones donacion) {
+        openBDWrite(); // Asegura que la base de datos esté en modo escritura
+        ContentValues values = new ContentValues(); // Contenedor para mapear valores a columnas
+        // Mapea los campos de Registro_Donaciones a las columnas de la tabla Donaciones
         values.put("nombre", donacion.getNombre());
         values.put("telefono", donacion.getTelefono());
         values.put("titulo", donacion.getTitulo());
         values.put("descripcion", donacion.getDescripcion());
         values.put("entrega", donacion.getEntrega());
 
-        long resultado = db.insert("Donaciones", null, values);
-        cerrarDB();
-        return resultado;
+        long resultado = db.insert("Donaciones", null, values); // Inserta datos en la tabla Donaciones; devuelve ID de fila o -1 si falla
+        cerrarDB(); // Cierra la base de datos tras la inserción
+        return resultado; // Devuelve el resultado de la inserción
     }
-    public ArrayList<Donaciones> obtenerdonaciones() {
-        openBDRead();  // Abre la BD en modo lectura
-        ArrayList<Donaciones> listaDonaciones = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM Donaciones", null);
 
-        if (cursor.moveToFirst()) {
+    // Obtiene todos los registros de la tabla Donaciones
+    public ArrayList<Registro_Donaciones> obtenerdonaciones() {
+        openBDRead(); // Abre la base de datos en modo lectura
+        ArrayList<Registro_Donaciones> listaDonaciones = new ArrayList<>(); // Lista para almacenar objetos de donaciones
+        Cursor cursor = db.rawQuery("SELECT * FROM Donaciones", null); // Consulta todas las columnas de la tabla Donaciones
+
+        if (cursor.moveToFirst()) { // Avanza al primer registro (si existe)
             do {
-                Donaciones donacion = new Donaciones();
-                donacion.setNombre(cursor.getString(1));     // nombre
-                donacion.setTelefono(cursor.getString(2));   // teléfono
-                donacion.setTitulo(cursor.getString(3));     // título
-                donacion.setDescripcion(cursor.getString(4)); // descripción
-                donacion.setEntrega(cursor.getString(5));     // método de entrega
-                listaDonaciones.add(donacion);
-            } while (cursor.moveToNext());
+                Registro_Donaciones donacion = new Registro_Donaciones(); // Crea un nuevo objeto de donación
+                // Llena los campos del objeto con datos del cursor (índices asumidos según estructura de la tabla)
+                donacion.setNombre(cursor.getString(1));     // nombre (índice de columna 1)
+                donacion.setTelefono(cursor.getString(2));   // teléfono (índice de columna 2)
+                donacion.setTitulo(cursor.getString(3));     // título (índice de columna 3)
+                donacion.setDescripcion(cursor.getString(4)); // descripción (índice de columna 4)
+                donacion.setEntrega(cursor.getString(5));     // método de entrega (índice de columna 5)
+                listaDonaciones.add(donacion); // Agrega el objeto a la lista
+            } while (cursor.moveToNext()); // Itera por todos los registros
         }
-        cursor.close();
-        return listaDonaciones;
+        cursor.close(); // Cierra el cursor para liberar recursos
+        return listaDonaciones; // Devuelve la lista de donaciones (vacía si no hay datos)
     }
-
-
-
-
 }

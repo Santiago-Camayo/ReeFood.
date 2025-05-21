@@ -1,4 +1,4 @@
-package com.example.reefood.views;
+package com.example.reefood.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
 import com.example.reefood.model.ManagerDB;
-import com.example.reefood.model.Usuario;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;

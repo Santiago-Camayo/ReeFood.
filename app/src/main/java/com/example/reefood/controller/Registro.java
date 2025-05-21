@@ -1,4 +1,4 @@
-package com.example.reefood.views;
+package com.example.reefood.controller;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,21 +11,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
 import com.example.reefood.model.ManagerDB;
-import com.example.reefood.model.Usuario;
+import com.example.reefood.model.Registro_Usuario;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class Registro extends AppCompatActivity {
     // Variables para las vistas
@@ -136,7 +133,7 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Este Correo Ya Esta En Uso", Toast.LENGTH_SHORT).show();;
         }
 
-        Usuario nuevousuario = new Usuario();
+        Registro_Usuario nuevousuario = new Registro_Usuario();
         nuevousuario.setNombre(nombre);
         nuevousuario.setApellido(apellido);
         nuevousuario.setCorreo(correo);

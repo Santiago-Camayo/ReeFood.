@@ -1,4 +1,4 @@
-package com.example.reefood.views;
+package com.example.reefood.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
