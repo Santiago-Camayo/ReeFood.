@@ -25,4 +25,5 @@ public class Constantes {
                     "entrega TEXT NOT NULL)";
 
 
+
 }

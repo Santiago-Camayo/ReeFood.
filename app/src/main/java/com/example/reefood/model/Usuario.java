@@ -49,6 +49,7 @@ public class Usuario {
         return telefono;
     }
 
+
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }

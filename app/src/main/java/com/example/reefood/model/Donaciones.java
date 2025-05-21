@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Donaciones implements Serializable {
     // Add the serialVersionUID for better version control
+
     private static final long serialVersionUID = 1L;
 
     private String nombre;

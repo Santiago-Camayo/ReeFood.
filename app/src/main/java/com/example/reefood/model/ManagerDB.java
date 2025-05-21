@@ -62,6 +62,7 @@ public class ManagerDB {
         openBDRead();
 
 
+
         String query = " SELECT * FROM Usuarios WHERE Correo=?";
         Cursor cursor = db.rawQuery(query, new  String[]{Correo});
 

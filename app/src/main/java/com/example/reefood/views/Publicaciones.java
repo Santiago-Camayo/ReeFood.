@@ -54,6 +54,7 @@ public class Publicaciones extends AppCompatActivity {
         adapter.actualizarDonaciones(donaciones);
     }
 
+
     private void configurarBotones() {
         btnconfiguracion.setOnClickListener(v -> {
             startActivity(new Intent(Publicaciones.this, Configuraciones.class));

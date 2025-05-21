@@ -27,6 +27,7 @@ public class Configuraciones extends AppCompatActivity {
     private SwitchMaterial swDarkMode;
 
 
+
     ImageButton botonhome, btneditperfil;
 
 

@@ -18,6 +18,7 @@ public class ConexionBD extends SQLiteOpenHelper {
         db.execSQL(Constantes.SENTENCIA_TABLA_DONACIONES);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

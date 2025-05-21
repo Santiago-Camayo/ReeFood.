@@ -22,6 +22,7 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
     private final Context context;
     private OnItemClickListener listener;
 
+
     // Interface for click listener
     public interface OnItemClickListener {
         void onItemClick(Donaciones donacion);
