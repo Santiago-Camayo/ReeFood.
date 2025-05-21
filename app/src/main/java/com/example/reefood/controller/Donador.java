@@ -13,12 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.reefood.R;
 import com.example.reefood.model.Registro_Donaciones;
 import com.example.reefood.model.ManagerDB;
-/**
- * Clase `Donador` que representa la actividad para registrar una nueva donación.
- * Esta actividad permite al usuario ingresar los detalles de una donación,
- * incluyendo nombre del donante, contacto, título del producto, una nota opcional
- * y el método de entrega.
- */
+
 public class Donador extends AppCompatActivity {
     // Campos de texto para la entrada de datos del usuario
     private EditText edtNombre, edtContacto, edtTituloProducto, edtNota;
@@ -47,9 +42,6 @@ public class Donador extends AppCompatActivity {
         configurarListeners();
     }
 
-    /**
-     * Inicializa las vistas (elementos de la interfaz de usuario) encontrándolos por su ID en el layout.
-     */
     private void inicializarVistas() {
         btnAtras = findViewById(R.id.btnatras);
         edtNombre = findViewById(R.id.edtNombre);
@@ -61,9 +53,7 @@ public class Donador extends AppCompatActivity {
         btnSiguiente = findViewById(R.id.btnsiguiente);
     }
 
-    /**
-     * Configura los listeners para los elementos interactivos de la interfaz.
-     */
+
     private void configurarListeners() {
         // Configura el listener para el botón de retroceso
         btnAtras.setOnClickListener(v -> {
@@ -93,11 +83,7 @@ public class Donador extends AppCompatActivity {
         });
     }
 
-    /**
-     * Valida que los campos obligatorios del formulario no estén vacíos.
-     * Muestra un mensaje Toast si algún campo requerido falta.
-     * @return `true` si todos los campos son válidos, `false` en caso contrario.
-     */
+
     private boolean validarCampos() {
         if (edtNombre.getText().toString().trim().isEmpty()) {
             // Muestra un mensaje si el nombre del donante está vacío
@@ -126,13 +112,7 @@ public class Donador extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Guarda la información de la donación en la base de datos.
-     * Crea un objeto `Registro_Donaciones` con los datos del formulario
-     * e intenta insertarlo usando `ManagerDB`.
-     * Muestra un mensaje Toast indicando el éxito o fracaso de la operación.
-     * Si tiene éxito, navega a la actividad `Publicaciones`.
-     */
+
     private void guardarDonacionEnDB() {
         // Crea un nuevo objeto Registro_Donaciones con los datos ingresados
         Registro_Donaciones nuevaDonacion = new Registro_Donaciones(

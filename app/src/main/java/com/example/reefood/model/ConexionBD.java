@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-// Clase helper para gestionar la creación y actualización de la base de datos SQLite de la aplicación.
-// Hereda de SQLiteOpenHelper, que provee el framework para estas operaciones.
-
 public class ConexionBD extends SQLiteOpenHelper {
     // Constructor de la clase.
     public ConexionBD(@Nullable Context context) {

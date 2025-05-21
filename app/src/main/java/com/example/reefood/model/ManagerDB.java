@@ -36,7 +36,7 @@ public class ManagerDB {
         Cursor cursor = db.rawQuery("SELECT * FROM Usuarios", null); // Consulta todas las columnas de la tabla Usuarios
 
         if (cursor.moveToNext()) { // Avanza al primer registro (si existe)
-            nombre = cursor.getString(0); // Obtiene el valor de la primera columna (se asume que es el nombre)
+            nombre = cursor.getString(1); // Obtiene el valor de la primera columna (se asume que es el nombre)
         }
         cursor.close(); // Cierra el cursor para liberar recursos
         return nombre; // Devuelve el nombre o cadena vacía si no hay datos
@@ -112,15 +112,15 @@ public class ManagerDB {
 
         if (cursor.moveToFirst()) { // Avanza al primer registro (si existe)
             do {
-                Registro_Donaciones donacion = new Registro_Donaciones(); // Crea un nuevo objeto de donación
-                // Llena los campos del objeto con datos del cursor (índices asumidos según estructura de la tabla)
-                donacion.setNombre(cursor.getString(1));     // nombre (índice de columna 1)
-                donacion.setTelefono(cursor.getString(2));   // teléfono (índice de columna 2)
-                donacion.setTitulo(cursor.getString(3));     // título (índice de columna 3)
-                donacion.setDescripcion(cursor.getString(4)); // descripción (índice de columna 4)
-                donacion.setEntrega(cursor.getString(5));     // método de entrega (índice de columna 5)
-                listaDonaciones.add(donacion); // Agrega el objeto a la lista
-            } while (cursor.moveToNext()); // Itera por todos los registros
+                Registro_Donaciones donacion = new Registro_Donaciones();
+
+                donacion.setNombre(cursor.getString(1));
+                donacion.setTelefono(cursor.getString(2));
+                donacion.setTitulo(cursor.getString(3));
+                donacion.setDescripcion(cursor.getString(4));
+                donacion.setEntrega(cursor.getString(5));
+                listaDonaciones.add(donacion);
+            } while (cursor.moveToNext());
         }
         cursor.close(); // Cierra el cursor para liberar recursos
         return listaDonaciones; // Devuelve la lista de donaciones (vacía si no hay datos)

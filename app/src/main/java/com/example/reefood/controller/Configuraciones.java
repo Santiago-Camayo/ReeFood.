@@ -120,7 +120,6 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
                             makeText(Configuraciones.this, "Procediendo a eliminar cuenta...", LENGTH_SHORT).show();
 
                             Log.i("Configuraciones", "!!! Llama a la función de eliminación del backend AQUÍ !!!");
-                    //TODO: Aquí debería llamarse un método de ManagerDB para eliminar el usuario de la tabla Usuarios
                         }
                     })
                     .setNegativeButton("No, cancelar", new DialogInterface.OnClickListener() {

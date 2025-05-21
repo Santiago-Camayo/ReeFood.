@@ -19,12 +19,6 @@ import com.example.reefood.model.Registro_Usuario;
 
 import java.util.ArrayList;
 
-/**
- * Clase MisDonaciones: Representa la pantalla donde el usuario puede ver sus donaciones.
- * Esta actividad permite navegar a otras secciones de la aplicación como Configuración,
- * el Menú principal y recargar la misma pantalla de Mis Donaciones.
- * También muestra el nombre del usuario actual.
- */
 public class MisDonaciones extends AppCompatActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario (UI).
@@ -34,16 +28,6 @@ public class MisDonaciones extends AppCompatActivity {
     // Instancia de ManagerDB para interactuar con la base de datos.
     ManagerDB managerDB;
 
-    /**
-     * Método onCreate: Se ejecuta cuando se crea la actividad.
-     * Inicializa la interfaz de usuario, configura los listeners de los botones
-     * y obtiene el nombre del usuario de la base de datos para mostrarlo.
-     *
-     * @param savedInstanceState Si la actividad se reinicia después de haber sido
-     *                           destruida previamente, este Bundle contiene el estado
-     *                           más reciente suministrado por onSaveInstanceState().
-     *                           De lo contrario, es nulo.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

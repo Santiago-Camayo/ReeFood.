@@ -74,7 +74,6 @@ public class Registro extends AppCompatActivity {
         setupGenderDropdown();
     }
 
-    // Método para inicializar las referencias a las vistas del layout
     private void initViews() {
         // Campos del formulario
         etNombre = findViewById(R.id.etnombre);
@@ -95,7 +94,6 @@ public class Registro extends AppCompatActivity {
         loadingContainer = findViewById(R.id.loading_container);
     }
 
-    // Método para configurar los listeners de los botones
     private void setupButtons() {
         // Botón de regresar
         btnBack.setOnClickListener(v -> onBackPressed());
@@ -115,11 +113,10 @@ public class Registro extends AppCompatActivity {
         // Botón para agregar foto de perfil
         fabAddPhoto.setOnClickListener(v -> {
             showToast("Seleccionar foto de perfil");
-            // Aquí iría la lógica de selección de foto
+
         });
     }
 
-    // Método para crear usuario en Firebase Authentication y guardar datos en Firestore
     private void registrarusuario() {
         // Obtener valores de los campos
         String nombre = etNombre.getText().toString().trim();
@@ -172,7 +169,7 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    // Método para configurar el selector de fecha
+
     private void setupDatePicker() {
         // Configurar listener para el campo de fecha
         etFecha.setOnClickListener(v -> showDatePickerDialog());
@@ -180,8 +177,6 @@ public class Registro extends AppCompatActivity {
         // Configurar listener para el icono de calendario
         tilFecha.setEndIconOnClickListener(v -> showDatePickerDialog());
     }
-
-    // Método para mostrar el diálogo de selección de fecha
     private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -200,7 +195,6 @@ public class Registro extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    // Método para configurar las opciones del dropdown de género
     private void setupGenderDropdown() {
         // Opciones de género para el desplegable
         String[] genderOptions = new String[]{"Masculino", "Femenino", "No binario", "Prefiero no decir"};
@@ -212,7 +206,6 @@ public class Registro extends AppCompatActivity {
         etGenero.setAdapter(adapter);
     }
 
-    // Método para validar campos del formulario
     private boolean validateFields() {
         // Obtener valores de los campos
         String nombre = etNombre.getText().toString().trim();
@@ -250,7 +243,6 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    // Método para mostrar mensajes Toast
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

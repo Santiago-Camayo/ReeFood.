@@ -65,9 +65,6 @@ public class IniciarSesion extends AppCompatActivity {
         });
     }
 
-    /**
-     * NUEVO MÉTODO: Iniciar sesión con SQLite (más simple)
-     */
     private void intentarIniciarSesionSQLite() {
         // Limpiar errores anteriores
         contenedorEmail.setError(null);
