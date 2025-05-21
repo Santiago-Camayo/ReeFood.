@@ -17,6 +17,7 @@ public class Menu extends AppCompatActivity {
     Button btndonar, btnrecibir;
     ImageButton btnconfiguracion, btneditperfil;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

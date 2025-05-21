@@ -32,6 +32,7 @@ public class VerDonacion extends AppCompatActivity {
         // Obtener la donación del intent
         donacion = (Registro_Donaciones) getIntent().getSerializableExtra("donacion");
 
+
         // Verificación alternativa en caso de que se envíen los campos por separado
         if (donacion == null) {
             // Verificar si hay datos individuales

@@ -5,6 +5,7 @@ import java.io.Serializable;
 // implementa Serializable para permitir su paso entre componentes (e.g., Intents)
 public class Registro_Donaciones implements Serializable {
     // Add the serialVersionUID for better version control
+
     private static final long serialVersionUID = 1L;
 
     private String nombre;

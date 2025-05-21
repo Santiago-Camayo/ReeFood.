@@ -60,6 +60,7 @@ public class Registro extends AppCompatActivity {
         calendar = Calendar.getInstance();
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
+
         // Inicializar vistas
         initViews();
 

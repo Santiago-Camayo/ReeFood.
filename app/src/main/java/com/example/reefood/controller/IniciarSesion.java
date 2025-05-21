@@ -116,6 +116,7 @@ public class IniciarSesion extends AppCompatActivity {
                 Toast.makeText(this, "No existe una cuenta con este correo electrónico", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 
     //validar el formato del email
