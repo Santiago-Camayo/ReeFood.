@@ -9,19 +9,20 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.reefood.R;
+import com.example.reefood.utils.HelperNavegacion;
 
 public class EditaPerfil extends Configuraciones {
 
     // Declaración de elementos de la interfaz de usuario (UI)
     // ImageButtons para la navegación:
-    ImageButton btncasa, btnconfiguracion, btneditperfil;
-    // EditTexts para la entrada de datos del perfil:
+
     private EditText editTextName;
     private EditText editTextEmail;
     private EditText editTextContactNumber;
     private EditText editTextAddress;
     // Button para guardar los cambios:
     private Button buttonSave;
+    private HelperNavegacion nav;
 
 
     @Override
@@ -55,30 +56,14 @@ public class EditaPerfil extends Configuraciones {
             Toast.makeText(EditaPerfil.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
         });
 
-        // Configuración del botón de configuraciones
-        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
-        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent para iniciar la actividad Configuraciones.
+        // Configuración de la navegación
+        nav = new HelperNavegacion(this);
+        nav.configurarNavegacion(
+                findViewById(R.id.botonesdenavegacion),
+                findViewById(R.id.fab),
+                findViewById(R.id.main)
+        );
 
 
-                Intent configuraciones = new Intent(EditaPerfil.this, Configuraciones.class);
-                // Inicia la actividad.
-                startActivity(configuraciones);
-            }
-        });
-
-        // Configuración del OnClickListener para el botón "Casa" (volver al menú principal)
-
-        btncasa = findViewById(R.id.btnhome);
-        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent para iniciar la actividad Menu.
-                Intent casa = new Intent(EditaPerfil.this, Menu.class);
-                startActivity(casa);
-            }
-        });
     }
 }

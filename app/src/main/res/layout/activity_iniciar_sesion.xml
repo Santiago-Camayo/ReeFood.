@@ -171,6 +171,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:text="@string/advertencialogin"
                     android:textColor="@color/avisos"
                     android:textSize="16dp" />

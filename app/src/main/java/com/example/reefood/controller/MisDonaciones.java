@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.reefood.R;
 import com.example.reefood.model.ManagerDB;
 import com.example.reefood.model.Registro_Usuario;
+import com.example.reefood.utils.HelperNavegacion;
 
 import java.util.ArrayList;
 
@@ -28,11 +29,22 @@ public class MisDonaciones extends AppCompatActivity {
     // Instancia de ManagerDB para interactuar con la base de datos.
     ManagerDB managerDB;
 
+    private HelperNavegacion nav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Establece el layout de la actividad.
         setContentView(R.layout.activity_mis_donaciones);
+
+
+        // Configuración de la navegación en la interfaz de usuario.
+        nav = new HelperNavegacion(this);
+        nav.configurarNavegacion(
+                findViewById(R.id.botonesdenavegacion),
+                findViewById(R.id.fab),
+                findViewById(R.id.main)
+        );
 
         // Inicializa la instancia de ManagerDB, pasando el contexto de esta actividad.
         managerDB =new ManagerDB(MisDonaciones.this);
@@ -43,39 +55,12 @@ public class MisDonaciones extends AppCompatActivity {
         // Establece el texto del TextView con el nombre del usuario.
         nombreusuario.setText(nombre);
 
-        // Enlaza las variables de los ImageButton con sus respectivos componentes en el layout.
-        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
-        btnmisdonaciones = findViewById(R.id.btnperfil);
-        btncasa = findViewById(R.id.btnhome);
-
-        // Configura el listener para el botón de configuración.
-        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent para iniciar la actividad Configuraciones.
-                Intent confi = new Intent(MisDonaciones.this, Configuraciones.class);
-                startActivity(confi);
-            }
-        });
-
-        btnmisdonaciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent para reiniciar la actividad MisDonaciones (actualizar la vista).
-                Intent profile = new Intent(MisDonaciones.this, MisDonaciones.class);
-                startActivity(profile);
-            }
-        });
-
-        // Configura el listener para el botón de inicio (casa).
-        btncasa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent para iniciar la actividad Menu (pantalla principal).
-                Intent casa = new Intent(MisDonaciones.this, Menu.class);
-                startActivity(casa);
-            }
-        });
+    }
+    @Override
+    public void onBackPressed() {
+        if (!nav.manejarBotonAtras()) {
+            super.onBackPressed();
+        }
     }
 
 }

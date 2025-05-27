@@ -131,7 +131,7 @@ public class IniciarSesion extends AppCompatActivity {
             @Override
             public void run() {
                 pantallacarga.setVisibility(View.GONE);
-                Intent menu = new Intent(IniciarSesion.this, Menu.class);
+                Intent menu = new Intent(IniciarSesion.this, Publicaciones.class);
                 startActivity(menu);
                 finish();
             }

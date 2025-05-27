@@ -1,131 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.Publicaciones"
-    android:fitsSystemWindows="true"
-    android:background="@color/white">
+    tools:context=".controller.Menu"
+    android:background="@drawable/screen"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
 
     <LinearLayout
-        android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/barra_redondasuperior"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/publicaciones"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:textStyle="bold">
-
-        </TextView>
-
-
-    </LinearLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/barradenavegacion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/barranavegacioninferior"
-        android:orientation="vertical"
-        android:paddingHorizontal="0dp"
-        android:paddingVertical="0dp">
-        <SearchView
-            android:id="@+id/search"
+        <LinearLayout
+            android:id="@+id/barrasuperior"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search..."
-            android:focusable="false"
-            android:closeIcon="@drawable/baseline_clear_24"
-            android:searchIcon="@drawable/baseline_search_24"
-            android:background="@drawable/buscador_background"/>
+            android:layout_height="60dp"
+            android:background="@color/azuldifuminado"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listaalimentos"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/playfairdisplayextrabolditalic"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="40dp">
+
+            </TextView>
+        </LinearLayout>
+        <!--contenido principal-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/search"
-            android:layout_marginTop="19dp"
-            android:scrollbars="vertical" />
+            android:orientation="vertical"
+            android:paddingHorizontal="0dp"
+            android:paddingVertical="0dp">
+
+            <SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/buscador_background"
+                android:closeIcon="@drawable/baseline_clear_24"
+                android:focusable="false"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search..."
+                android:searchIcon="@drawable/baseline_search_24" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listaalimentos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/search"
+                android:layout_marginTop="19dp"
+                android:scrollbars="vertical" />
 
 
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/barranavegacioninferior"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/barra_redonda"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="40dp">
-
-        <ImageButton
-            android:id="@+id/btnhome"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/casa"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/chat"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:id="@+id/btnperfil"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/user"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:id="@+id/btnConfiguraciones"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/configuraciones"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
-
-
-
+        </RelativeLayout>
     </LinearLayout>
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/barradenavegacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        android:backgroundTint="@color/azuldifuminado"
+        app:fabCradleRoundedCornerRadius="20dp"
+        app:fabCradleMargin="8dp">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/botonesdenavegacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/boton_menu"
+            android:layout_marginEnd="16dp"
+            app:labelVisibilityMode="labeled"
+            android:background="@color/transparente"
+            android:elevation="0dp"
+            app:itemIconTint="@color/seleecionbotones"
+            app:itemTextColor="@color/seleecionbotones"/>
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_add"
+        app:layout_anchor="@id/barradenavegacion"
+        android:backgroundTint="@color/azulvinculo"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
+import com.example.reefood.utils.HelperNavegacion;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 // Actividad para gestionar configuraciones de usuario, como notificaciones, modo oscuro y eliminación de cuenta
@@ -32,11 +33,20 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
         View editarperfil;
         LinearLayout btnelminarperfil;
+        private HelperNavegacion nav;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_configuraciones);
+
+            // Configuración de la navegación
+            nav = new HelperNavegacion(this);
+            nav.configurarNavegacion(
+                    findViewById(R.id.botonesdenavegacion),
+                    findViewById(R.id.fab),
+                    findViewById(R.id.main)
+            );
 
             // Inicializa los switches desde el layout
             switchNotificaciones = findViewById(R.id.switch_notificaciones);
@@ -64,32 +74,14 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
                 }
             });
 
-            // Botón para editar perfil, redirige a MisDonaciones (probable error lógico)
-            btneditperfil = findViewById(R.id.btnperfil);
-            btneditperfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Configuraciones.this, MisDonaciones.class);
-                    startActivity(intent);
-                }
-            });
 
-            // Botón para volver al menú principal
-            botonhome = findViewById(R.id.homeButton);
-            botonhome.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Configuraciones.this, Menu.class);
-                    startActivity(intent);
-                }
-            });
 
             // Vista de texto "Editar perfil", redirige a MisDonaciones (probable error lógico)
             editarperfil = findViewById(R.id.Texteditarperfil);
             editarperfil.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Configuraciones.this, MisDonaciones.class);
+                    Intent intent = new Intent(Configuraciones.this, EditaPerfil.class);
                     startActivity(intent);
                 }
             });
@@ -103,6 +95,8 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
                 }
             });
         }
+
+
 
         // recuadro de elminacion de cuenta(falta terminar)
         private void Dialogoconfirmacion() {
@@ -133,4 +127,12 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+        @Override
+        public void onBackPressed() {
+            if (!nav.manejarBotonAtras()) {
+                super.onBackPressed();
+            }
+        }
+
+
     }

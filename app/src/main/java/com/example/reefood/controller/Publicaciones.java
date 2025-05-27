@@ -9,18 +9,25 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reefood.R;
+import com.example.reefood.databinding.AccionesbtnaddBinding;
+import com.example.reefood.databinding.ActivityMenuBinding;
 import com.example.reefood.model.Registro_Donaciones;
 import com.example.reefood.model.ManagerDB;
+import com.example.reefood.utils.HelperNavegacion;
+import com.example.reefood.utils.HelperNavegacion;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class Publicaciones extends AppCompatActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario.
-    private ImageButton btnconfiguracion, btneditperfil, btncasa;
+
     private RecyclerView recyclerView;
     private DonacionAdapter adapter;
     private ManagerDB managerDB;
+
+    private HelperNavegacion nav;
 
 
     @Override
@@ -28,6 +35,17 @@ public class Publicaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Establece el layout de la actividad.
         setContentView(R.layout.activity_publicaciones);
+
+
+
+        nav = new HelperNavegacion(this);
+        nav.configurarNavegacion(
+                findViewById(R.id.botonesdenavegacion),
+                findViewById(R.id.fab),
+                findViewById(R.id.main)
+        );
+
+
 
         // Inicializa el ManagerDB, que gestiona las operaciones de la base de datos.
         managerDB = new ManagerDB(this);
@@ -38,20 +56,25 @@ public class Publicaciones extends AppCompatActivity {
         configurarBotones();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!nav.manejarBotonAtras()) {
+            super.onBackPressed();
+        }
+    }
+
     private void inicializarVistas() {
         // Asigna el RecyclerView del layout a la variable recyclerView.
         recyclerView = findViewById(R.id.listaalimentos);
-        // Asigna los ImageButton del layout a sus respectivas variables.
-        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
-        btneditperfil = findViewById(R.id.btnperfil);
-        btncasa = findViewById(R.id.btnhome);
+
+
     }
 
 
     private void configurarRecyclerView() {
 
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         // Inicializa el DonacionAdapter con una lista vacía de donaciones.
 
         adapter = new DonacionAdapter(null, this);
@@ -68,21 +91,15 @@ public class Publicaciones extends AppCompatActivity {
     }
 
     private void configurarBotones() {
-        btnconfiguracion.setOnClickListener(v -> {
-            startActivity(new Intent(Publicaciones.this, Configuraciones.class));
-            // Inicia la actividad Configuraciones cuando se hace clic en el botón de configuración.
-        });
-
-        btneditperfil.setOnClickListener(v -> {
-            startActivity(new Intent(Publicaciones.this, MisDonaciones.class));
-            // Inicia la actividad MisDonaciones cuando se hace clic en el botón de perfil/mis donaciones.
-
-        });
-
-        btncasa.setOnClickListener(v -> {
-            startActivity(new Intent(Publicaciones.this, Menu.class));
-            // Inicia la actividad Menu (pantalla principal o de inicio) cuando se hace clic
-
-        });
+        nav = new HelperNavegacion(this);
+        nav.configurarNavegacion(
+                findViewById(R.id.botonesdenavegacion),
+                findViewById(R.id.fab),
+                findViewById(R.id.main)
+        );
     }
+
+    //accion barra navegacion
+
+
 }
