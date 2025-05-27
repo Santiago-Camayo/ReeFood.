@@ -1,90 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.Menu"
-    android:background="@drawable/screen"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    tools:context=".controller.EditaPerfil"
+    android:padding="0dp"
+    android:fitsSystemWindows="true"
+    android:background="@color/background">
 
-
+    <!-- Barra de navegación superior -->
     <LinearLayout
+        android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:background="@color/primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        <LinearLayout
-            android:id="@+id/barrasuperior"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/azuldifuminado"
-            android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/playfairdisplayextrabolditalic"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/perfil"
+            android:textColor="@color/onPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-            </TextView>
-        </LinearLayout>
-        <!--contenido principal-->
-    <LinearLayout
+    <!-- Contenedor principal -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/editarperfil"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@id/barradenavegacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/barranavegacioninferior">
 
+        <!-- CardView configurado con color surface -->
         <androidx.cardview.widget.CardView
             android:id="@+id/perfilconfg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="8dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="@color/surface"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp">
 
-            <!-- Usar un LinearLayout vertical dentro del CardView para organizar los elementos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                >
+                android:padding="16dp">
 
                 <EditText
                     android:id="@+id/editTextName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
-                    android:textColorHint="@color/white"
-                    android:background="@color/fondo"
+                    android:textColorHint="@color/textSecondary"
+                    android:textColor="@color/textPrimary"
+                    android:backgroundTint="@color/gris_claro"
                     android:inputType="textPersonName"
                     android:padding="12dp"
                     android:minHeight="48dp"
-                    android:layout_marginBottom="16dp"
-                    android:elevation="8dp"/>
+                    android:layout_marginBottom="16dp" />
 
                 <EditText
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="@color/textSecondary"
+                    android:textColor="@color/textPrimary"
                     android:inputType="textEmailAddress"
+                    android:autofillHints="emailAddress"
+                    android:backgroundTint="@color/gris_claro"
                     android:padding="12dp"
                     android:minHeight="48dp"
-                    android:autofillHints="emailAddress"
-                    android:background="@color/fondo"
-                    android:elevation="8dp"
                     android:layout_marginBottom="16dp" />
 
                 <EditText
@@ -92,13 +95,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contact_number"
-                    android:textColorHint="@color/white"
-                    android:background="@color/fondo"
-                    android:elevation="8dp"
+                    android:textColorHint="@color/textSecondary"
+                    android:textColor="@color/textPrimary"
                     android:inputType="phone"
+                    android:autofillHints="phone"
+                    android:backgroundTint="@color/gris_claro"
                     android:padding="12dp"
                     android:minHeight="48dp"
-                    android:autofillHints="phone"
                     android:layout_marginBottom="16dp" />
 
                 <EditText
@@ -106,13 +109,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
-                    android:textColorHint="@color/white"
-                    android:background="@color/fondo"
-                    android:elevation="8dp"
+                    android:textColorHint="@color/textSecondary"
+                    android:textColor="@color/textPrimary"
                     android:inputType="textPostalAddress"
+                    android:autofillHints="postalAddress"
+                    android:backgroundTint="@color/gris_claro"
                     android:padding="12dp"
                     android:minHeight="48dp"
-                    android:autofillHints="postalAddress"
                     android:layout_marginBottom="16dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -120,50 +123,67 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/save"
-                    android:textSize="30dp"
-                    android:backgroundTint="@color/azulbtn"
-                    android:textColor="@color/white"
-                    android:padding="12dp"
-                    android:elevation="8dp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/onPrimary"
+                    android:backgroundTint="@color/primary"
+                    android:padding="12dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-    </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/barradenavegacion"
+    <!-- Barra de navegación inferior -->
+    <LinearLayout
+        android:id="@+id/barranavegacioninferior"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:fabAlignmentMode="center"
-        android:backgroundTint="@color/azuldifuminado"
-        app:fabCradleRoundedCornerRadius="20dp"
-        app:fabCradleMargin="8dp">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/botonesdenavegacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/boton_menu"
-            android:layout_marginEnd="16dp"
-            app:labelVisibilityMode="labeled"
-            android:background="@color/transparente"
-            android:elevation="0dp"
-            app:itemIconTint="@color/seleecionbotones"
-            app:itemTextColor="@color/seleecionbotones"/>
-    </com.google.android.material.bottomappbar.BottomAppBar>
+        android:layout_height="80dp"
+        android:background="@color/primaryVariant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="40dp">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/btn_add"
-        app:layout_anchor="@id/barradenavegacion"
-        android:backgroundTint="@color/azulvinculo"
-        />
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:contentDescription="@string/configuraciones"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/casa"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_weight="1"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <ImageButton
+            android:contentDescription="@string/configuraciones"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/chat"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btnperfil"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/user"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:contentDescription="@string/configuraciones"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/configuraciones"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

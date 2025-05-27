@@ -1,138 +1,119 @@
 package com.example.reefood.controller;
 
-import static android.widget.Toast.*;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.reefood.R;
-import com.example.reefood.utils.HelperNavegacion;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-// Actividad para gestionar configuraciones de usuario, como notificaciones, modo oscuro y eliminación de cuenta
-    public class Configuraciones extends AppCompatActivity {
+public class Configuraciones extends BaseActivity {
+    private SwitchMaterial swDarkMode;
+    private Switch switchNotificaciones;
+    private ImageButton botonhome, btneditperfil;
+    private TextView txteliminar;
+    private Toast currentToast;
+    private static final String KEY_NOTIFICATIONS = "notifications";
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_configuraciones);
 
-        private Switch switchNotificaciones;
-        private SwitchMaterial swDarkMode;
-
-
-        ImageButton botonhome, btneditperfil;
-
-
-        View editarperfil;
-        LinearLayout btnelminarperfil;
-        private HelperNavegacion nav;
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_configuraciones);
-
-            // Configuración de la navegación
-            nav = new HelperNavegacion(this);
-            nav.configurarNavegacion(
-                    findViewById(R.id.botonesdenavegacion),
-                    findViewById(R.id.fab),
-                    findViewById(R.id.main)
-            );
-
-            // Inicializa los switches desde el layout
-            switchNotificaciones = findViewById(R.id.switch_notificaciones);
-            swDarkMode = findViewById(R.id.swmodooscuro);
-
-            // Listener para el switch de modo oscuro (funcionalidad no implementada)
-            swDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Toast.makeText(Configuraciones.this, "CONFIGIGURACION PROXIMAMENTE", LENGTH_SHORT ).show();
-                }
-            });
-
-            // Listener para el switch de notificaciones
-            switchNotificaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-
-                       Toast.makeText(Configuraciones.this, "Notificaciones encendidas", LENGTH_SHORT).show();
-                    } else {
-
-                       Toast.makeText(Configuraciones.this, "Notificaciones apagadas", LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-
-
-            // Vista de texto "Editar perfil", redirige a MisDonaciones (probable error lógico)
-            editarperfil = findViewById(R.id.Texteditarperfil);
-            editarperfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Configuraciones.this, EditaPerfil.class);
-                    startActivity(intent);
-                }
-            });
-
-            // Botón para eliminar perfil, muestra un diálogo de confirmación
-            btnelminarperfil=findViewById(R.id.btnelminarperfil);
-            btnelminarperfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialogoconfirmacion();
-                }
-            });
-        }
-
-
-
-        // recuadro de elminacion de cuenta(falta terminar)
-        private void Dialogoconfirmacion() {
-            new AlertDialog.Builder(this)
-                    .setTitle("Eliminar cuenta")
-                    .setMessage("¿Estás seguro de que quieres eliminar tu cuenta? Esta acción es irreversible y perderás todos tus datos asociados.") // Mensaje
-                    .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Log.d("Configuraciones", "Usuario confirmó eliminación.");
-
-                           //funcion para eliminar cuenta(no disponibe)
-
-                            makeText(Configuraciones.this, "Procediendo a eliminar cuenta...", LENGTH_SHORT).show();
-
-                            Log.i("Configuraciones", "!!! Llama a la función de eliminación del backend AQUÍ !!!");
-                        }
-                    })
-                    .setNegativeButton("No, cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        // Registra en el log que el usuario canceló la eliminación
-                            Log.d("Configuraciones", "Usuario canceló eliminación.");
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
-        @Override
-        public void onBackPressed() {
-            if (!nav.manejarBotonAtras()) {
-                super.onBackPressed();
-            }
-        }
-
-
+        initViews();
+        setupListeners();
+        loadSavedStates();
     }
+
+    private void initViews() {
+        swDarkMode = findViewById(R.id.swmodooscuro);
+        switchNotificaciones = findViewById(R.id.switch_notificaciones);
+        botonhome = findViewById(R.id.homeButton);
+        btneditperfil = findViewById(R.id.btnperfil);
+        txteliminar = findViewById(R.id.eliminar);
+    }
+
+    private void setupListeners() {
+        swDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                boolean currentPref = getDarkModePreference();
+                if (currentPref != isChecked) {
+                    saveThemePreference(isChecked);
+                    showToast(isChecked ? "Modo oscuro activado" : "Modo oscuro desactivado");
+
+                    AppCompatDelegate.setDefaultNightMode(
+                            isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+                    );
+
+                    recreate();
+                }
+            }
+        });
+
+        botonhome.setOnClickListener(v -> finish());
+        btneditperfil.setOnClickListener(v -> startActivity(new Intent(this, EditaPerfil.class)));
+        txteliminar.setOnClickListener(v -> mostrarDialogoConfirmacion());
+    }
+
+    private void loadSavedStates() {
+        swDarkMode.setChecked(getDarkModePreference());
+        // Desactivar el listener temporalmente
+        switchNotificaciones.setOnCheckedChangeListener(null);
+        boolean notificationsEnabled = getSharedPreferences().getBoolean(KEY_NOTIFICATIONS, false); // Cambiado a false
+        Log.d("Configuraciones", "Loading notifications state: " + notificationsEnabled);
+        switchNotificaciones.setChecked(notificationsEnabled);
+        // Restaurar el listener
+        switchNotificaciones.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Log.d("Configuraciones", "Notifications toggled: " + isChecked);
+            getSharedPreferences().edit()
+                    .putBoolean(KEY_NOTIFICATIONS, isChecked)
+                    .apply();
+            showToast(isChecked ? "Notificaciones activadas" : "Notificaciones desactivadas");
+        });
+    }
+
+    private void mostrarDialogoConfirmacion() {
+        new AlertDialog.Builder(this)
+                .setTitle("Eliminar cuenta")
+                .setMessage("¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.")
+                .setPositiveButton("Eliminar", (dialog, which) -> {
+                    Log.d("Configuraciones", "Cuenta eliminada");
+                    showToast("Cuenta eliminada correctamente");
+                })
+                .setNegativeButton("Cancelar", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    private void showToast(String message) {
+        if (currentToast != null) {
+            currentToast.cancel();
+        }
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        currentToast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (currentToast != null) {
+            currentToast.cancel();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+}

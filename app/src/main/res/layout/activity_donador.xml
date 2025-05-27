@@ -138,7 +138,7 @@
                 android:inputType="textMultiLine"
                 android:minHeight="100dp"
                 android:paddingHorizontal="10dp"
-                android:textColorHint="@color/avisos" />
+                android:textColorHint="@color/black" />
 
 
             <TextView
