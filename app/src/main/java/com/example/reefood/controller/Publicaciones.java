@@ -19,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class Publicaciones extends BaseActivity {
+public class Publicaciones extends AppCompatActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario.
 
