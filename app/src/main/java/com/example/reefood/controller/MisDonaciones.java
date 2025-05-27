@@ -19,7 +19,7 @@ import com.example.reefood.model.Registro_Usuario;
 
 import java.util.ArrayList;
 
-public class MisDonaciones extends AppCompatActivity {
+public class MisDonaciones extends BaseActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario (UI).
     ImageButton btnconfiguracion, btnmisdonaciones, btncasa;

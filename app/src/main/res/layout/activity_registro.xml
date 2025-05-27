@@ -83,7 +83,7 @@
                             android:id="@+id/imgPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:backgroundTint="@color/light_blue_A200"
+                            android:backgroundTint="@color/primary"
                             android:contentDescription="@string/aggftperfil"
                             android:scaleType="centerCrop"
                             android:src="@drawable/usuario1" />
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
-                        android:backgroundTint="@color/light_blue_A200"
+                        android:backgroundTint="@color/primary"
                         android:contentDescription="@string/aggftperfil"
                         app:fabSize="mini"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
@@ -295,7 +295,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cargando..."
-            android:textColor="@color/light_blue_A200"
+            android:textColor="@color/primary"
             android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textStyle="bold"
             android:textSize="20sp"/>

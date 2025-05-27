@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.reefood.R;
 
 
-public class Menu extends AppCompatActivity {
+public class Menu extends BaseActivity {
 
     // Declaración de elementos UI
     Button btndonar, btnrecibir;

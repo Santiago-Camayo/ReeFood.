@@ -14,7 +14,7 @@ import com.example.reefood.model.ManagerDB;
 
 import java.util.List;
 
-public class Publicaciones extends AppCompatActivity {
+public class Publicaciones extends BaseActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario.
     private ImageButton btnconfiguracion, btneditperfil, btncasa;
