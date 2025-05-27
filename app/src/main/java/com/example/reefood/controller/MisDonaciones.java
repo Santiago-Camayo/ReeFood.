@@ -20,7 +20,7 @@ import com.example.reefood.utils.HelperNavegacion;
 
 import java.util.ArrayList;
 
-public class MisDonaciones extends BaseActivity {
+public class MisDonaciones extends AppCompatActivity {
 
     // Declaración de variables para los componentes de la interfaz de usuario (UI).
     ImageButton btnconfiguracion, btnmisdonaciones, btncasa;

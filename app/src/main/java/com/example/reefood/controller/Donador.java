@@ -14,7 +14,7 @@ import com.example.reefood.R;
 import com.example.reefood.model.Registro_Donaciones;
 import com.example.reefood.model.ManagerDB;
 
-public class Donador extends BaseActivity {
+public class Donador extends AppCompatActivity {
     // Campos de texto para la entrada de datos del usuario
     private EditText edtNombre, edtContacto, edtTituloProducto, edtNota;
     // Grupo de botones de radio para seleccionar el método de entrega
