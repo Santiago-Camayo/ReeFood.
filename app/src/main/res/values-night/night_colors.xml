@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores base -->
+    <color name="white">#FFFFFF</color> <!-- sigue blanco para texto -->
+    <color name="black">#000000</color>
+
+    <!-- Fondo y tarjetas en oscuro -->
+    <color name="background">#121212</color> <!-- fondo oscuro -->
+    <color name="surface">#1E1E1E</color> <!-- tarjeta oscuro -->
+    <color name="card">#2C2C2C</color>
+
+    <!-- Colores primarios oscuros (azules oscuros) -->
+    <color name="primary">#0D47A1</color> <!-- azul oscuro más profundo -->
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryVariant">#08306B</color> <!-- azul variante oscuro -->
+
+    <!-- Colores secundarios oscuros -->
+    <color name="secondary">#005799</color> <!-- azul vinculo oscuro -->
+    <color name="onSecondary">#FFFFFF</color>
+
+    <!-- Texto para oscuro -->
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#AAAAAA</color>
+
+    <!-- Switch -->
+    <color name="switchThumbOn">#0E2659</color>
+    <color name="switchThumbOff">#666666</color>
+
+    <!-- Colores personalizados para uso -->
+    <color name="azulbtn">#0D47A1</color> <!-- azul btn oscuro -->
+    <color name="azulvinculo">#005799</color> <!-- azul vinculo oscuro -->
+    <color name="azuldifuminado">#08306B</color> <!-- azul difuminado oscuro -->
+    <color name="gris_claro">#AAAAAA</color>
+</resources>
+

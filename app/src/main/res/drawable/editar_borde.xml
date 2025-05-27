@@ -4,7 +4,7 @@
     <!-- Color del borde -->
     <stroke
         android:width="2dp"
-        android:color="@color/gris" /> <!-- Color negro, puedes cambiarlo -->
+        android:color="@color/textSecondary" /> <!-- Color negro, puedes cambiarlo -->
     <!-- Color de fondo (opcional) -->
     <solid
         android:color="#FFFFFF" /> <!-- Fondo blanco, puedes cambiarlo -->
