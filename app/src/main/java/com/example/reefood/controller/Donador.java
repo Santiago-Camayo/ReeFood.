@@ -58,7 +58,7 @@ public class Donador extends BaseActivity {
         // Configura el listener para el botón de retroceso
         btnAtras.setOnClickListener(v -> {
             // Inicia la actividad Menu al hacer clic en el botón de atrás
-            startActivity(new Intent(Donador.this, Menu.class));
+            startActivity(new Intent(Donador.this, Publicaciones.class));
             // Finaliza la actividad actual para que el usuario no pueda volver a ella con el botón de retroceso del dispositivo
             finish();
         });
