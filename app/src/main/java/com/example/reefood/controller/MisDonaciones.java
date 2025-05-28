@@ -10,14 +10,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 // Importaciones de recursos y clases del proyecto.
 import com.example.reefood.R;
 import com.example.reefood.model.ManagerDB;
+import com.example.reefood.model.Registro_Donaciones;
 import com.example.reefood.model.Registro_Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase MisDonaciones: Representa la pantalla donde el usuario puede ver sus donaciones.
@@ -38,17 +41,38 @@ public class MisDonaciones extends AppCompatActivity {
      * Método onCreate: Se ejecuta cuando se crea la actividad.
      * Inicializa la interfaz de usuario, configura los listeners de los botones
      * y obtiene el nombre del usuario de la base de datos para mostrarlo.
-     *
-     * @param savedInstanceState Si la actividad se reinicia después de haber sido
-     *                           destruida previamente, este Bundle contiene el estado
-     *                           más reciente suministrado por onSaveInstanceState().
-     *                           De lo contrario, es nulo.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Establece el layout de la actividad.
         setContentView(R.layout.activity_mis_donaciones);
+        managerDB = new ManagerDB(this);
+
+        listaproductos = findViewById(R.id.listproductos);
+        // 1) Obtener la lista de objetos Registro_Donaciones
+        List<Registro_Donaciones> donaciones = managerDB.obtenerdonaciones();
+        // 2) Convertir a una lista de strings para mostrar
+        List<String> items = new ArrayList<>();
+        for (Registro_Donaciones d : donaciones) {
+            items.add(d.getNombre() + " — " + d.getTitulo());
+        }
+
+        // 3) Crear y asignar el adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                items
+        );
+        listaproductos.setAdapter(adapter);
+
+        // 4) Cuando hagan click, abrimos VerDonacion pasando el objeto
+        listaproductos.setOnItemClickListener((parent, view, position, id) -> {
+            Registro_Donaciones seleccion = donaciones.get(position);
+            Intent i = new Intent(MisDonaciones.this, VerDonacion.class);
+            i.putExtra("donacion", seleccion);
+            startActivity(i);
+        });
 
         // Inicializa la instancia de ManagerDB, pasando el contexto de esta actividad.
         managerDB =new ManagerDB(MisDonaciones.this);

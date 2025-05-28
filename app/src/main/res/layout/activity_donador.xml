@@ -156,7 +156,8 @@
                 android:layout_height="200dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:src="@drawable/ic_placeholder_image"/>
 
             <Button
                 android:id="@+id/addImagesButton"
