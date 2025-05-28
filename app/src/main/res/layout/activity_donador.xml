@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="56dp"
-        android:background="@color/azulbtn"
+        android:background="@color/primary"
         android:orientation="horizontal"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:adjustViewBounds="true"
-            android:background="@color/azulbtn"
+            android:background="@color/primary"
             android:scaleType="fitCenter"
             android:src="@drawable/flechaizquierda" />
 
@@ -138,7 +138,7 @@
                 android:inputType="textMultiLine"
                 android:minHeight="100dp"
                 android:paddingHorizontal="10dp"
-                android:textColorHint="@color/avisos" />
+                android:textColorHint="@color/black" />
 
 
             <TextView

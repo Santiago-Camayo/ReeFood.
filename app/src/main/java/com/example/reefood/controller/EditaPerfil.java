@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.reefood.R;
 import com.example.reefood.utils.HelperNavegacion;
 
-public class EditaPerfil extends Configuraciones {
+public class EditaPerfil extends BaseActivity {
 
     // Declaración de elementos de la interfaz de usuario (UI)
     // ImageButtons para la navegación:

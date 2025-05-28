@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.Menu"
-    android:background="@color/white"
+    android:background="@color/background"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
@@ -21,7 +21,7 @@
             android:id="@+id/barrasuperior"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/azuldifuminado"
+            android:background="@color/primary"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
                 android:fontFamily="@font/playfairdisplayextrabolditalic"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/white"
+                android:textColor="@color/onPrimary"
                 android:textSize="40dp">
 
             </TextView>
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Editar_Perfil"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/notis"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
             <Switch
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/seguridad"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/idioma"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
@@ -228,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/elminarperfil"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
@@ -264,7 +264,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/tema"
-                android:textColor="@color/light_blue_600"
+                android:textColor="@color/primary"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
@@ -289,7 +289,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
-        android:backgroundTint="@color/azuldifuminado"
+        android:backgroundTint="@color/primaryVariant"
         app:fabCradleRoundedCornerRadius="20dp"
         app:fabCradleMargin="8dp">
         <com.google.android.material.bottomnavigation.BottomNavigationView

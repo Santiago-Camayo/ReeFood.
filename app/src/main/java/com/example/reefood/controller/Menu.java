@@ -18,7 +18,7 @@ import com.example.reefood.databinding.ActivityMenuBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class Menu extends AppCompatActivity implements View.OnClickListener {
+public class Menu extends BaseActivity implements View.OnClickListener {
 
     private ActivityMenuBinding binding;
     private AccionesbtnaddBinding accionesBinding;

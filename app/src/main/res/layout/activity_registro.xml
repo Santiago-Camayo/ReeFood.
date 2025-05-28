@@ -14,7 +14,7 @@
         android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/azulbtn"
+        android:background="@color/primary"
         android:orientation="horizontal"
         android:padding="8dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="@string/inciarseccion"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="@color/white"
+            android:textColor="@color/onPrimary"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                             android:id="@+id/imgPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:backgroundTint="@color/light_blue_A200"
+                            android:backgroundTint="@color/primary"
                             android:contentDescription="@string/aggftperfil"
                             android:scaleType="centerCrop"
                             android:src="@drawable/usuario1" />
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
-                        android:backgroundTint="@color/light_blue_A200"
+                        android:backgroundTint="@color/primary"
                         android:contentDescription="@string/aggftperfil"
                         app:fabSize="mini"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
@@ -122,6 +122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:background="@color/background"
                         android:padding="16dp">
 
 
@@ -144,7 +145,7 @@
                                     android:id="@+id/etnombre"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="text" />
+                                    android:inputType="textPersonName" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -277,7 +278,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#CB000000"
+        android:background="@color/pantallacarga"
         android:visibility="gone"
         android:clickable="true"
         android:focusable="true">
@@ -295,7 +296,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cargando..."
-            android:textColor="@color/light_blue_A200"
+            android:textColor="@color/primary"
             android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textStyle="bold"
             android:textSize="20sp"/>

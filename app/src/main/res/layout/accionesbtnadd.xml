@@ -12,6 +12,7 @@
         android:layout_gravity="center|top"
         android:scaleType="centerCrop"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,7 @@
             android:textAlignment="viewStart"
             android:text="OPCIONES"
             android:padding="8dp"
-            android:textColor="@color/azulvinculo"
+            android:textColor="@color/primary"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
             android:textSize="25sp"
@@ -64,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/agregardonacion"
-            android:textColor="@color/azuldifuminado"
+            android:textColor="@color/primary"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"/>
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/newchat"
-            android:textColor="@color/azuldifuminado"
+            android:textColor="@color/primary"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"/>

@@ -40,6 +40,9 @@ android {
 
 dependencies {
     implementation("com.android.volley:volley:1.2.1")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("com.google.android.material:material:1.9.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.android.material:material:1.13.0-alpha13")
     implementation ("com.airbnb.android:lottie:6.0.0")

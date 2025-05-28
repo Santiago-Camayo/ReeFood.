@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Registro extends AppCompatActivity {
+public class Registro extends BaseActivity {
     // Variables para las vistas
     ImageButton btnBack;
     MaterialButton btnRegistrar;
