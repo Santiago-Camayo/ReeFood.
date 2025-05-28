@@ -19,6 +19,7 @@
         android:padding="8dp"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <ImageButton
             android:id="@+id/btnatras"
             android:layout_width="40dp"

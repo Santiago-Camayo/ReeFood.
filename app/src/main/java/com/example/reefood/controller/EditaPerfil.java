@@ -25,6 +25,7 @@ public class EditaPerfil extends BaseActivity {
     private HelperNavegacion nav;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Llama al método onCreate de la superclase (Configuraciones)

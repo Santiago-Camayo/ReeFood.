@@ -21,6 +21,7 @@
             android:orientation="vertical"
             android:weightSum="5.5">
 
+
             <ImageView
                 android:id="@+id/imgalimento"
                 android:layout_width="match_parent"

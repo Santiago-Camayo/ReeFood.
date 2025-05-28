@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,6 +63,23 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
         // Asigna los datos de la donación a los TextViews del ViewHolder.
         holder.nombreDonante.setText(donacion.getNombre());
         holder.descripcionDonacion.setText(donacion.getDescripcion());
+        // --- Cargar la imagen ---
+        String uriString = donacion.getImagenUri();
+        if (uriString != null && !uriString.isEmpty()) {
+            try {
+                Uri imagenUri = Uri.parse(uriString);
+                holder.imgAlimento.setImageURI(imagenUri);
+
+            } catch (Exception e) {
+                // Si hay algún error al parsear o cargar, muestra el placeholder
+                holder.imgAlimento.setImageResource(R.drawable.ic_placeholder_image);
+                e.printStackTrace();
+            }
+        } else {
+            // Si no hay URI, muestra el placeholder
+            holder.imgAlimento.setImageResource(R.drawable.ic_placeholder_image);
+        }
+        // --- Fin Cargar la imagen ---
 
         // Configura el OnClickListener para el itemView (la vista completa del ítem).
         holder.itemView.setOnClickListener(v -> {

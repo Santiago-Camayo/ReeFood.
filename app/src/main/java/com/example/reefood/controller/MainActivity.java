@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity {
                         View.SYSTEM_UI_FLAG_FULLSCREEN |
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+
         // Inicialización de vistas
         backgroundImage = findViewById(R.id.background_image);
         logo = findViewById(R.id.logo);

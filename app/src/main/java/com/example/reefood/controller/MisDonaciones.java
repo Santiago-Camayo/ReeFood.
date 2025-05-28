@@ -15,10 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 // Importaciones de recursos y clases del proyecto.
 import com.example.reefood.R;
 import com.example.reefood.model.ManagerDB;
+import com.example.reefood.model.Registro_Donaciones;
 import com.example.reefood.model.Registro_Usuario;
 import com.example.reefood.utils.HelperNavegacion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MisDonaciones extends BaseActivity {
 
@@ -36,6 +38,33 @@ public class MisDonaciones extends BaseActivity {
         super.onCreate(savedInstanceState);
         // Establece el layout de la actividad.
         setContentView(R.layout.activity_mis_donaciones);
+
+        managerDB = new ManagerDB(this);
+
+        listaproductos = findViewById(R.id.listproductos);
+        // 1) Obtener la lista de objetos Registro_Donaciones
+        List<Registro_Donaciones> donaciones = managerDB.obtenerdonaciones();
+        // 2) Convertir a una lista de strings para mostrar
+        List<String> items = new ArrayList<>();
+        for (Registro_Donaciones d : donaciones) {
+            items.add(d.getNombre() + " — " + d.getTitulo());
+        }
+
+        // 3) Crear y asignar el adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                items
+        );
+        listaproductos.setAdapter(adapter);
+
+        // 4) Cuando hagan click, abrimos VerDonacion pasando el objeto
+        listaproductos.setOnItemClickListener((parent, view, position, id) -> {
+            Registro_Donaciones seleccion = donaciones.get(position);
+            Intent i = new Intent(MisDonaciones.this, VerDonacion.class);
+            i.putExtra("donacion", seleccion);
+            startActivity(i);
+        });
 
 
         // Configuración de la navegación en la interfaz de usuario.

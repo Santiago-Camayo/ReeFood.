@@ -47,6 +47,7 @@ public class Publicaciones extends BaseActivity {
 
 
 
+
         // Inicializa el ManagerDB, que gestiona las operaciones de la base de datos.
         managerDB = new ManagerDB(this);
 

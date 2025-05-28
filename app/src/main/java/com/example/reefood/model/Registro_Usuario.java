@@ -19,6 +19,7 @@ public class Registro_Usuario {
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
+
     }
 
 

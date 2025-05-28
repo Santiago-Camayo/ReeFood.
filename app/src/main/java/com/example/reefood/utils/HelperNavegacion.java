@@ -29,6 +29,7 @@ public class HelperNavegacion {
     private CoordinatorLayout layoutPrincipal;              // Layout donde se agregan los menús
     private FloatingActionButton botonFlotante;             // El FAB (botón flotante)
 
+
     // Constructor - Solo necesita la actividad que lo va a usar
     public HelperNavegacion(AppCompatActivity actividad) {
         this.actividad = actividad;

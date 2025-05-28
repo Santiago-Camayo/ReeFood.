@@ -24,6 +24,7 @@
 
 
 
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="300dp"

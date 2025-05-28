@@ -100,6 +100,7 @@ public class Configuraciones extends BaseActivity {
         boolean darkModeEnabled = prefs.getBoolean(KEY_DARK_MODE, false);
         swDarkMode.setChecked(darkModeEnabled);
 
+
         // Aplicar el tema sin recrear la actividad
         AppCompatDelegate.setDefaultNightMode(
                 darkModeEnabled ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO

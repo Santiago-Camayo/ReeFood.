@@ -10,6 +10,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected static final String PREFS_NAME = "app_preferences";
     protected static final String KEY_DARK_MODE = "dark_mode";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         applySavedTheme(); // Aplicar antes del super.onCreate

@@ -30,6 +30,7 @@ public class IniciarSesion extends BaseActivity {
     // Base de datos SQLite
     private ManagerDB managerDB;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -38,6 +38,7 @@ public class Registro extends BaseActivity {
     TextInputLayout tilFecha;
     FloatingActionButton fabAddPhoto;
 
+
     // Variables para el calendario y formato de fecha
     private Calendar calendar;
     private SimpleDateFormat dateFormatter;
