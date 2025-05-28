@@ -98,6 +98,7 @@ public class ManagerDB {
         values.put("titulo", donacion.getTitulo());
         values.put("descripcion", donacion.getDescripcion());
         values.put("entrega", donacion.getEntrega());
+        values.put("imagen_uri", donacion.getImagenUri());
 
         long resultado = db.insert("Donaciones", null, values); // Inserta datos en la tabla Donaciones; devuelve ID de fila o -1 si falla
         cerrarDB(); // Cierra la base de datos tras la inserción
@@ -119,6 +120,7 @@ public class ManagerDB {
                 donacion.setTitulo(cursor.getString(3));     // título (índice de columna 3)
                 donacion.setDescripcion(cursor.getString(4)); // descripción (índice de columna 4)
                 donacion.setEntrega(cursor.getString(5));     // método de entrega (índice de columna 5)
+                donacion.setImagenUri(cursor.getString(6));  //Metodo Imgen Uri
                 listaDonaciones.add(donacion); // Agrega el objeto a la lista
             } while (cursor.moveToNext()); // Itera por todos los registros
         }

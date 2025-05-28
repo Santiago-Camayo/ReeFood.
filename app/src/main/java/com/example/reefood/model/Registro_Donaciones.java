@@ -13,18 +13,20 @@ public class Registro_Donaciones implements Serializable {
     private String descripcion;
     private String telefono;
     private String entrega;
+    private String imagenUri;
 
     // Constructor por defecto, necesario para deserialización y creación de instancias vacías
     public Registro_Donaciones() {
     }
 
     // Constructor
-    public Registro_Donaciones(String nombre, String titulo, String descripcion, String telefono, String entrega) {
+    public Registro_Donaciones(String nombre, String titulo, String descripcion, String telefono, String entrega, String imagenUri) {
         this.nombre = nombre;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.telefono = telefono;
         this.entrega = entrega;
+        this.imagenUri = imagenUri;
     }
 
     // Getters and setters
@@ -68,6 +70,14 @@ public class Registro_Donaciones implements Serializable {
         this.entrega = entrega;
     }
 
+    public String getImagenUri() {
+        return imagenUri;
+    }
+
+    public void setImagenUri(String imagenUri) {
+        this.imagenUri = imagenUri;
+    }
+
     // Método toString para representar el objeto como cadena, útil para depuración o logging
     public String toString() {
         return "Registro_Donaciones{" +
@@ -76,6 +86,7 @@ public class Registro_Donaciones implements Serializable {
                 ", descripcion='" + descripcion + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", entrega='" + entrega + '\'' +
+                ", imagenUri='" + imagenUri + '\'' +
                 '}';
     }
 }

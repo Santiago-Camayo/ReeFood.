@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.reefood.R;
 import com.example.reefood.model.Registro_Donaciones;
 
-public class VerDonacion extends BaseActivity {
+public class VerDonacion extends AppCompatActivity {
 
     private Registro_Donaciones donacion;
     private TextView tituloDonacion;

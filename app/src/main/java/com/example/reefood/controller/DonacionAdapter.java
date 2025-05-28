@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.net.Uri; // <-- Asegúrate de importar Uri
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +21,7 @@ import java.util.List;
  * Esta clase se encarga de crear las vistas para cada ítem de la lista (donación)
  * y de vincular los datos de cada donación a su vista correspondiente.
  * También gestiona los clics en los ítems, permitiendo una acción personalizada
- * a través de la interfaz {@link OnItemClickListener}.
+ * a través de la interfaz
  */
 public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHolder> {
 
@@ -46,8 +46,8 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
 
     /**
      * Constructor del adaptador.
-     * @param donaciones Lista inicial de donaciones a mostrar.
-     * @param context Contexto de la aplicación.
+     *  donaciones Lista inicial de donaciones a mostrar.
+     *  context Contexto de la aplicación.
      */
     public DonacionAdapter(List<Registro_Donaciones> donaciones, Context context) {
         this.donaciones = donaciones;
@@ -56,7 +56,6 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
 
     /**
      * Establece el listener que se activará cuando se haga clic en un ítem.
-     * @param listener La implementación de {@link OnItemClickListener}.
      */
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
@@ -65,9 +64,9 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
     /**
      * Se llama cuando RecyclerView necesita crear un nuevo {@link ViewHolder} para representar un ítem.
      * Infla el layout del ítem (publicacion_item.xml) y crea una instancia de ViewHolder.
-     * @param parent El ViewGroup al que se añadirá la nueva vista después de ser vinculada a una posición del adaptador.
-     * @param viewType El tipo de vista del nuevo View.
-     * @return Un nuevo ViewHolder que contiene la Vista para cada ítem.
+     *  parent El ViewGroup al que se añadirá la nueva vista después de ser vinculada a una posición del adaptador.
+     *  El tipo de vista del nuevo View.
+     *  Un nuevo ViewHolder que contiene la Vista para cada ítem.
      */
     @NonNull
     @Override
@@ -91,7 +90,24 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
 
         // Asigna los datos de la donación a los TextViews del ViewHolder.
         holder.nombreDonante.setText(donacion.getNombre());
-        holder.descripcionDonacion.setText(donacion.getDescripcion());
+        holder.descripcionDonacion.setText(donacion.getTitulo());
+        // --- Cargar la imagen ---
+        String uriString = donacion.getImagenUri();
+        if (uriString != null && !uriString.isEmpty()) {
+            try {
+                Uri imagenUri = Uri.parse(uriString);
+                holder.imgAlimento.setImageURI(imagenUri);
+
+            } catch (Exception e) {
+                // Si hay algún error al parsear o cargar, muestra el placeholder
+                holder.imgAlimento.setImageResource(R.drawable.ic_placeholder_image);
+                e.printStackTrace();
+            }
+        } else {
+            // Si no hay URI, muestra el placeholder
+            holder.imgAlimento.setImageResource(R.drawable.ic_placeholder_image);
+        }
+        // --- Fin Cargar la imagen ---
 
         // Configura el OnClickListener para el itemView (la vista completa del ítem).
         holder.itemView.setOnClickListener(v -> {
@@ -121,7 +137,7 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
     /**
      * Actualiza la lista de donaciones del adaptador y notifica al RecyclerView
      * que los datos han cambiado, para que pueda redibujar la lista.
-     * @param nuevasDonaciones La nueva lista de donaciones.
+     * nuevasDonaciones La nueva lista de donaciones.
      */
     public void actualizarDonaciones(List<Registro_Donaciones> nuevasDonaciones) {
         this.donaciones = nuevasDonaciones;

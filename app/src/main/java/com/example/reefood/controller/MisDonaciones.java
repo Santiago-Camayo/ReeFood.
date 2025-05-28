@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 // Importaciones de recursos y clases del proyecto.
@@ -60,9 +61,9 @@ public class MisDonaciones extends AppCompatActivity {
         nombreusuario.setText(nombre);
 
         // Enlaza las variables de los ImageButton con sus respectivos componentes en el layout.
-        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
-        btnmisdonaciones = findViewById(R.id.btnperfil);
-        btncasa = findViewById(R.id.btnhome);
+        //btnconfiguracion = findViewById(R.id.btnConfiguraciones);
+        //btnmisdonaciones = findViewById(R.id.btnperfil);
+        btncasa = findViewById(R.id.botonesdenavegacion);
 
         // Configura el listener para el botón de configuración.
         btnconfiguracion.setOnClickListener(new View.OnClickListener() {
