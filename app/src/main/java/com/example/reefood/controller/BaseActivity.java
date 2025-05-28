@@ -6,35 +6,47 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+// Clase base para actividades que usan modo oscuro
+// Configuraciones hereda de esta clase para manejar el tema
 public abstract class BaseActivity extends AppCompatActivity {
-    protected static final String PREFS_NAME = "app_preferences";
-    protected static final String KEY_DARK_MODE = "dark_mode";
+    // Preferencias compartidas con Configuraciones
+    protected static final String NOMBRE_PREFERENCIAS = "preferencias_app"; // Nombre del archivo
+    protected static final String CLAVE_MODO_OSCURO = "modo_oscuro"; // Clave para el tema
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        applySavedTheme(); // Aplicar antes del super.onCreate
+        // Aplicar el tema ANTES de crear la vista (evita parpadeo)
+        aplicarTemaGuardado();
         super.onCreate(savedInstanceState);
     }
 
-    protected void applySavedTheme() {
-        boolean isDarkMode = getDarkModePreference();
+    // Aplica el tema guardado (claro/oscuro)
+    protected void aplicarTemaGuardado() {
+        boolean modoOscuro = obtenerPreferenciaTema();
+
+        // Configura el tema de la app
         AppCompatDelegate.setDefaultNightMode(
-                isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+                modoOscuro ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
         );
     }
 
-    protected boolean getDarkModePreference() {
-        return getSharedPreferences().getBoolean(KEY_DARK_MODE, false);
+    // Obtiene si el modo oscuro está activado
+    protected boolean obtenerPreferenciaTema() {
+        // false = valor por defecto si no existe
+        return obtenerPreferencias().getBoolean(CLAVE_MODO_OSCURO, false);
     }
 
-    protected void saveThemePreference(boolean isDarkMode) {
-        getSharedPreferences().edit()
-                .putBoolean(KEY_DARK_MODE, isDarkMode)
+    // Guarda la preferencia del tema
+    protected void guardarPreferenciaTema(boolean modoOscuro) {
+        // Guarda el valor (apply = guardado en segundo plano)
+        obtenerPreferencias().edit()
+                .putBoolean(CLAVE_MODO_OSCURO, modoOscuro)
                 .apply();
     }
 
-    protected SharedPreferences getSharedPreferences() {
-        return getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+    // Metodo helper para acceder a la preferencia
+    protected SharedPreferences obtenerPreferencias() {
+        return getSharedPreferences(NOMBRE_PREFERENCIAS, MODE_PRIVATE);
     }
 }
