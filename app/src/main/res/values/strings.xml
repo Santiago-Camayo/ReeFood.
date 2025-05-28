@@ -88,4 +88,6 @@
     <string name="Singup">Sing Up!</string>
     <string name="Hello">Hello</string>
     <string name="cancelar">Cancelar</string>
+    <string name="agregardonacion">Agregar Donación</string>
+    <string name="newchat">Nuevo Chat</string>
 </resources>

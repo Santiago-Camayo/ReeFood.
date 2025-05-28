@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReFood"
         tools:targetApi="31">
+
         <activity
             android:name=".controller.MisDonaciones"
             android:exported="false" />
@@ -37,21 +38,30 @@
         <activity
             android:name=".controller.Publicaciones"
             android:exported="false" />
+
         <activity
             android:name=".controller.Menu"
             android:exported="false" />
+
         <activity
             android:name=".controller.Registro"
             android:exported="false" />
 
+        <!-- MainActivity es la actividad principal (Splash Screen) -->
         <activity
-            android:name=".controller.IniciarSesion"
+            android:name=".controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".controller.IniciarSesion"
+            android:exported="false" />
+
     </application>
 
 </manifest>

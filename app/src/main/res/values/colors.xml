@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="azulbtn">#277DCE</color>
-    <color name="avisos">#8A8A8A</color>
-    <color name="azulvinculo">#00BBFF</color>
-    <color name="azuldifuminado">#0D85C9</color>
-    <color name="fondotarjeta">#B8BBBD</color>
-    <color name="gris">#8C2F2C2C</color>
-    <color name="colorSwitchOn">#0E2659</color> <!-- para encendido -->
-    <color name="colorSwitchOff">#CC4251ED</color> <!-- para apagado -->
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="light_blue_A200">#FF40C4FF</color>
-    <color name="black_overlay">#66000000</color>
-    <color name="fondo">#E160B3F6</color>
+    <!-- Colores base -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
+    <!-- Fondo y tarjetas -->
+    <color name="background">#F5F5F5</color> <!-- fondo claro -->
+    <color name="surface">#FFFFFF</color> <!-- tarjeta clara -->
+    <color name="card">#E0E0E0</color>
+
+    <!-- Colores primarios (azules claros) -->
+    <color name="primary">#277DCE</color> <!-- azul principal claro -->
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryVariant">#0D85C9</color> <!-- azul secundario -->
+
+    <!-- Colores secundarios -->
+    <color name="secondary">#00BBFF</color> <!-- azul vinculo claro -->
+    <color name="onSecondary">#FFFFFF</color>
+
+    <!-- Texto -->
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#666666</color>
+
+    <!-- Switch -->
+    <color name="switchThumbOn">#0E2659</color>
+    <color name="switchThumbOff">#CCCCCC</color>
+
+    <!-- Colores personalizados para uso -->
+    <color name="azulbtn">#277DCE</color> <!-- mismo que primary -->
+    <color name="azulvinculo">#00BBFF</color> <!-- azul vinculo -->
+    <color name="azuldifuminado">#0D85C9</color> <!-- azul difuminado -->
+    <color name="gris_claro">#CCCCCC</color>
+    <color name="transparente">#00000000</color>
+    <color name="pantallacarga">#A182B0C3</color>
 </resources>

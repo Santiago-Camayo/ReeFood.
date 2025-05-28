@@ -15,7 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class IniciarSesion extends AppCompatActivity {
+public class IniciarSesion extends BaseActivity {
 
     // Declaración de componentes UI
     private TextInputLayout contenedorEmail;
@@ -65,9 +65,6 @@ public class IniciarSesion extends AppCompatActivity {
         });
     }
 
-    /**
-     * NUEVO MÉTODO: Iniciar sesión con SQLite (más simple)
-     */
     private void intentarIniciarSesionSQLite() {
         // Limpiar errores anteriores
         contenedorEmail.setError(null);
@@ -134,7 +131,7 @@ public class IniciarSesion extends AppCompatActivity {
             @Override
             public void run() {
                 pantallacarga.setVisibility(View.GONE);
-                Intent menu = new Intent(IniciarSesion.this, Menu.class);
+                Intent menu = new Intent(IniciarSesion.this, Publicaciones.class);
                 startActivity(menu);
                 finish();
             }

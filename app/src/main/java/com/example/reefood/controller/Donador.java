@@ -2,18 +2,12 @@ package com.example.reefood.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import android.net.Uri;
-import android.provider.MediaStore; // <-- Importar MediaStore
-import android.widget.ImageView; // <-- Importar ImageView
 
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reefood.R;
@@ -26,9 +20,6 @@ import com.example.reefood.model.ManagerDB;
  * y el método de entrega.
  */
 public class Donador extends AppCompatActivity {
-    private ImageView imgDonacionPreview; // <-- Nuevo campo para preview
-    private Button btnSeleccionarImagen; // <-- Nuevo botón
-    private Uri imagenUri = null;
     // Campos de texto para la entrada de datos del usuario
     private EditText edtNombre, edtContacto, edtTituloProducto, edtNota;
     // Grupo de botones de radio para seleccionar el método de entrega
@@ -41,9 +32,6 @@ public class Donador extends AppCompatActivity {
     private String metodoEntrega = "";
     // Instancia de ManagerDB para interactuar con la base de datos
     private ManagerDB managerDB;
-
-    // Código de solicitud para la galería
-    private static final int PICK_IMAGE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +56,9 @@ public class Donador extends AppCompatActivity {
         edtContacto = findViewById(R.id.edtContacto);
         edtTituloProducto = findViewById(R.id.edtNombreProducto);
         edtNota = findViewById(R.id.edtnota);
-        imgDonacionPreview = findViewById(R.id.view_agr_imagen); // <-- Inicializar ImageView
-        btnSeleccionarImagen = findViewById(R.id.addImagesButton); // <-- Inicializar Botón
-
         // Asocia el RadioGroup con su ID en el layout
         deliveryMethodGroup = findViewById(R.id.deliveryMethodGroup);
         btnSiguiente = findViewById(R.id.btnsiguiente);
-
-
     }
 
     /**
@@ -102,50 +85,12 @@ public class Donador extends AppCompatActivity {
             }
         });
 
-        btnSeleccionarImagen.setOnClickListener(v -> abrirGaleria());
-
-
         // Configura el listener para el botón "Siguiente"
         btnSiguiente.setOnClickListener(v -> {
             if (validarCampos()) {
                 guardarDonacionEnDB();
             }
         });
-    }
-
-    /**
-     * Abre la galería del dispositivo para que el usuario seleccione una imagen.
-     */
-    private void abrirGaleria() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        // Pide permiso de lectura persistente
-        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-    }
-    /**
-     * Se llama cuando la actividad de selección de imagen (galería) devuelve un resultado.
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST
-                && resultCode == RESULT_OK
-                && data != null
-                && data.getData() != null) {
-            imagenUri = data.getData();
-            // 2) “Toma” el permiso de lectura de forma persistente
-            final int takeFlags = data.getFlags()
-                    & (Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            getContentResolver().takePersistableUriPermission(imagenUri, takeFlags);
-
-            imgDonacionPreview.setImageURI(imagenUri);
-            imgDonacionPreview.setVisibility(View.VISIBLE);
-            mostrarToast("Imagen seleccionada");
-        }
     }
 
     /**
@@ -172,11 +117,6 @@ public class Donador extends AppCompatActivity {
             return false;
         }
 
-        if (imagenUri == null) {
-            mostrarToast("Seleccione una imagen para la donación");
-            return false;
-        }
-
         if (metodoEntrega.isEmpty()) {
             // Muestra un mensaje si no se ha seleccionado un método de entrega
             mostrarToast("Seleccione un método de entrega");
@@ -195,16 +135,12 @@ public class Donador extends AppCompatActivity {
      */
     private void guardarDonacionEnDB() {
         // Crea un nuevo objeto Registro_Donaciones con los datos ingresados
-        // Convierte la Uri a String para guardarla (o null si no hay imagen)
-        String uriString = (imagenUri != null) ? imagenUri.toString() : null;
-
         Registro_Donaciones nuevaDonacion = new Registro_Donaciones(
                 edtNombre.getText().toString(),
                 edtTituloProducto.getText().toString(),
                 edtNota.getText().toString(),
                 edtContacto.getText().toString(),
-                metodoEntrega, // Utiliza la variable que almacena el método de entrega seleccionado
-                uriString
+                metodoEntrega // Utiliza la variable que almacena el método de entrega seleccionado
         );
         // Inserta la donación en la base de datos a través de ManagerDB y obtiene el resultado
         long resultado = managerDB.InsertarDonacion(nuevaDonacion);
