@@ -99,7 +99,6 @@ public class Publicaciones extends BaseActivity {
         );
     }
 
-    //accion barra navegacion
 
 
 }
