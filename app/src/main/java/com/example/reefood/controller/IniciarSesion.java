@@ -1,6 +1,7 @@
 package com.example.reefood.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -99,6 +100,10 @@ public class IniciarSesion extends BaseActivity {
         boolean usuarioValido = managerDB.verificarlogin(email, contraseña);
 
         if (usuarioValido) {
+            SharedPreferences prefs = getSharedPreferences("UsuarioPrefs", MODE_PRIVATE); //guardar correo
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("correo", email);
+            editor.apply();
             // Login exitoso
             Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
             cargarsiguientepantalla();

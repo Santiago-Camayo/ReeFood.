@@ -20,7 +20,7 @@ public class Constantes {
     public static String TABLA_DONACIONES = "Donaciones"; // <-- Nombre de la tabla
     // Nombres de las columnas (¡Buena práctica!)
     public static String COL_DON_ID = "id";
-    public static String COL_DON_NOMBRE = "nombre";
+    public static String COL_DON_CORREO = "Correo";
     public static String COL_DON_TELEFONO = "telefono";
     public static String COL_DON_TITULO = "titulo";
     public static String COL_DON_DESCRIPCION = "descripcion";
@@ -31,7 +31,7 @@ public class Constantes {
     public static String SENTENCIA_TABLA_DONACIONES =
             "CREATE TABLE IF NOT EXISTS " + TABLA_DONACIONES + " (" +
                     COL_DON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL_DON_NOMBRE + " TEXT NOT NULL, " +
+                    COL_DON_CORREO + " TEXT NOT NULL, " +
                     COL_DON_TELEFONO + " TEXT NOT NULL, " +
                     COL_DON_TITULO + " TEXT NOT NULL, " +
                     COL_DON_DESCRIPCION + " TEXT NOT NULL, " +

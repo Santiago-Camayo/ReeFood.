@@ -100,7 +100,6 @@ public class ManagerDB {
         values.put("entrega", donacion.getEntrega());
         values.put("imagen_uri", donacion.getImagenUri());
 
-
         long resultado = db.insert("Donaciones", null, values); // Inserta datos en la tabla Donaciones; devuelve ID de fila o -1 si falla
         cerrarDB(); // Cierra la base de datos tras la inserción
         return resultado; // Devuelve el resultado de la inserción
@@ -127,5 +126,9 @@ public class ManagerDB {
         }
         cursor.close(); // Cierra el cursor para liberar recursos
         return listaDonaciones; // Devuelve la lista de donaciones (vacía si no hay datos)
+    }
+    public boolean ElimarUsuario(String correo) {
+        SQLiteDatabase db = conection.getWritableDatabase();
+        return db.delete("Usuarios", "Correo = ?", new String[]{correo}) > 0;
     }
 }

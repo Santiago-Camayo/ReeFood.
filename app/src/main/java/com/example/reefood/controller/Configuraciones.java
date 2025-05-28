@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.reefood.R;
+import com.example.reefood.model.ManagerDB;
 import com.example.reefood.utils.HelperNavegacion;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -86,7 +87,7 @@ public class Configuraciones extends BaseActivity {
         btnelminarperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogoConfirmacion();
+                mostrarDialogoConfirmacion();
             }
         });
     }
@@ -157,32 +158,31 @@ public class Configuraciones extends BaseActivity {
     }
 
     // Diálogo de confirmación para eliminación de cuenta (mejorado)
-    private void dialogoConfirmacion() {
+    private void mostrarDialogoConfirmacion() {
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar cuenta")
                 .setMessage("¿Estás seguro de que quieres eliminar tu cuenta? Esta acción es irreversible y perderás todos tus datos asociados.")
                 .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("Configuraciones", "Usuario confirmó eliminación.");
+                        String correo = getSharedPreferences("UsuarioPrefs", MODE_PRIVATE)
+                                .getString("correo", "");
 
-                        // Función para eliminar cuenta (no disponible aún)
-                        mostrarToast("Procediendo a eliminar cuenta...");
-
-                        Log.i("Configuraciones", "!!! Llama a la función de eliminación del backend AQUÍ !!!");
+                        ManagerDB managerDB = new ManagerDB(Configuraciones.this);
+                        if (managerDB.ElimarUsuario(correo)) {
+                            getSharedPreferences("UsuarioPrefs", MODE_PRIVATE).edit().clear().apply();
+                            startActivity(new Intent(Configuraciones.this, IniciarSesion.class));
+                            finish();
+                        } else {
+                            Toast.makeText(Configuraciones.this, "Error al eliminar", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
-                .setNegativeButton("No, cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Registra en el log que el usuario canceló la eliminación
-                        Log.d("Configuraciones", "Usuario canceló eliminación.");
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeButton("No, cancelar", null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
 
     // Método mejorado para mostrar Toast (evita múltiples toast superpuestos)
     private void mostrarToast(String mensaje) {
